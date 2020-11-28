@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "all servers",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "server/startAll.js",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "account server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "server/account_server/app.js",
+            "args": [
+                "../configs_local.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "hall server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "server/hall_server/app.js",
+            "args": [
+                "../configs_local.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "game server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "server/majiang_server/app.js",
+            "args": [
+                "../configs_local.js"
+            ]
+        }
+    ]
+}
