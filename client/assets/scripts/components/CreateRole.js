@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        inputName:cc.EditBox,
+        editBoxName:cc.EditBox,
         // foo: {
         //    default: null,
         //    url: cc.Texture2D,  // optional, default is typeof default
@@ -49,7 +49,11 @@ cc.Class({
         ];
         var idx = Math.floor(Math.random() * (names.length - 1));
         var idx2 = Math.floor(Math.random() * (names2.length - 1));
-        this.inputName.string = names[idx] + names2[idx2];
+        let nm = names[idx] + names2[idx2];
+
+        this.editBoxName.string = nm;
+        this.editBoxName.textLabel.string = nm;
+
     },
 
     // use this for initialization
@@ -59,11 +63,11 @@ cc.Class({
             cvs.fitHeight = true;
             cvs.fitWidth = true;
         }
-        this.onRandomBtnClicked();
+        //this.onRandomBtnClicked();
     },
 
     onBtnConfirmClicked:function(){
-        var name = this.inputName.string;
+        var name = this.editBoxName.string;
         if(name == ""){
             console.log("invalid name.");
             return;
