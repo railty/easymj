@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "fibers version is ^1.0.15 under windows, is ^5.0.0 under ubuntu",
   "main": "startAll.js",
   "directories": {
     "test": "tests"
