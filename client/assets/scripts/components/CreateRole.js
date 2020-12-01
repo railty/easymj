@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        inputName:cc.EditBox,
         editBoxName:cc.EditBox,
         // foo: {
         //    default: null,

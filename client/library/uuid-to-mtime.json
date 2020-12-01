@@ -210,8 +210,8 @@
     "relativePath": "resources\\scenes\\createrole.fire"
   },
   "efb1084f-0b5a-4980-b187-1e949555cb55": {
-    "asset": 1606615149314,
-    "meta": 1606615149366,
+    "asset": 1606621971983,
+    "meta": 1606621972021,
     "relativePath": "resources\\scenes\\hall.fire"
   },
   "4a1acad9-ce88-4334-aa62-bf23a5ccc79e": {
@@ -2274,11 +2274,6 @@
     "meta": 1606426987323,
     "relativePath": "scripts\\components\\MJRoom.js"
   },
-  "5d56b158-cbf4-446f-bee9-402abd60787a": {
-    "asset": 1606614415028,
-    "meta": 1606614416180,
-    "relativePath": "scripts\\components\\CreateRole.js"
-  },
   "9836134e-b892-4283-b6b2-78b5acf3ed45": {
     "asset": 1606018651481,
     "meta": 1606614945336,
@@ -2778,5 +2773,10 @@
     "asset": 1606018651608,
     "meta": 1606614949318,
     "relativePath": "model\\primitives.fbx"
+  },
+  "5d56b158-cbf4-446f-bee9-402abd60787a": {
+    "asset": 1606621883592,
+    "meta": 1606621968124,
+    "relativePath": "scripts\\components\\CreateRole.js"
   }
 }
