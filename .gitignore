@@ -1,5 +1,5 @@
-public/svelte/build
-public/web-mobile
+# public/svelte/build
+# public/web-mobile
 server/node_modules
 client/temp
 client/library/imports

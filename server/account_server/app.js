@@ -1,6 +1,6 @@
 //这是一个账户服务器的开始
 var db = require('../utils/db');
-var configs = require(process.argv[2]);
+var configs = require("../configs_local.js");
 
 //init db pool.
 //初始化mysql，就是连接数据库
