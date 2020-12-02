@@ -312,6 +312,6 @@ app.get('/is_server_online',function(req,res){
 
 exports.start = function($config){
 	config = $config;
-	app.listen(config.CLEINT_PORT);
-	console.log("client service is listening on port " + config.CLEINT_PORT);
+	app.listen(config.HALL_INT_PORT);
+	console.log("client service is listening on port " + config.HALL_INT_PORT);
 };

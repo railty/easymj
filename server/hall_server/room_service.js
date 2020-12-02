@@ -230,6 +230,6 @@ exports.isServerOnline = function(ip,port,callback){
 
 exports.start = function($config){
 	config = $config;
-	app.listen(config.ROOM_PORT,config.FOR_ROOM_IP);
-	console.log("room service is listening on " + config.FOR_ROOM_IP + ":" + config.ROOM_PORT);
+	app.listen(config.ROOM_INT_PORT,config.FOR_ROOM_IP);
+	console.log("room service is listening on " + config.FOR_ROOM_IP + ":" + config.ROOM_INT_PORT);
 };

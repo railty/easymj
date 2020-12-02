@@ -15,14 +15,10 @@ var config = null;
 
 exports.start = function(cfg){
 	config = cfg;
-	hallAddr = config.HALL_IP  + ":" + config.HALL_INT_PORT;
+	hallAddr = config.HALL_IP  + ":" + config.HALL_EXT_PORT;
 	app.listen(config.CLIENT_PORT);
 	console.log("account server is listening on " + config.CLIENT_PORT);
 }
-
-
-
-
 
 //设置跨域访问
 app.all('*', function(req, res, next) {

@@ -37,7 +37,7 @@ exports.account_server = function(){
 exports.hall_server = function(){
 	return {
 		HALL_IP:HALL_IP,
-		CLEINT_PORT:HALL_CLIENT_PORT,
+		CLIENT_PORT:HALL_CLIENT_PORT,
 		FOR_ROOM_IP:LOCAL_IP,
 		ROOM_PORT:HALL_ROOM_PORT,
 		ACCOUNT_PRI_KEY:ACCOUNT_PRI_KEY,

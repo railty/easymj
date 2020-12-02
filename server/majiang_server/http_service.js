@@ -12,7 +12,7 @@ var config = null;
 var serverIp = "";
 
 //测试
-app.use(express.static('../public/'));
+app.use(express.static('./public/'));
 
 app.all('*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
