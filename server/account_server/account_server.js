@@ -15,7 +15,7 @@ var config = null;
 
 exports.start = function(cfg){
 	config = cfg;
-	hallAddr = config.HALL_IP  + ":" + config.HALL_CLIENT_PORT;
+	hallAddr = config.HALL_IP  + ":" + config.HALL_INT_PORT;
 	app.listen(config.CLIENT_PORT);
 	console.log("account server is listening on " + config.CLIENT_PORT);
 }

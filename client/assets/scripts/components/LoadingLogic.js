@@ -149,7 +149,7 @@ cc.Class({
                 console.log("error.");
             }
             else{
-                //cc.vv.SI = 服务端穿过来的数据这里面饱含了服务器的hallAddr = config.HALL_IP  + ":" + config.HALL_CLIENT_PORT;
+                //cc.vv.SI = 服务端穿过来的数据这里面饱含了服务器的hallAddr = config.HALL_IP  + ":" + config.HALL_EXT_PORT;
                 cc.vv.SI = ret;
                 if(ret.version != cc.VERSION){
                     cc.find("Canvas/alert").active = true;

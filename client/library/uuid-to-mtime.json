@@ -2095,8 +2095,8 @@
     "relativePath": "scripts\\components\\ImageLoader.js"
   },
   "350d3472-f5a5-48a8-9476-edf3f61ffcf5": {
-    "asset": 1606320959173,
-    "meta": 1606322007571,
+    "asset": 1606881056736,
+    "meta": 1606881244664,
     "relativePath": "scripts\\components\\LoadingLogic.js"
   },
   "572a741f-87af-4df5-92d7-90db6100d7e2": {
@@ -2205,8 +2205,8 @@
     "relativePath": "scripts\\ReplayMgr.js"
   },
   "74d78241-a877-4329-8ea1-72463662e2fe": {
-    "asset": 1606321185177,
-    "meta": 1606322008695,
+    "asset": 1606881106214,
+    "meta": 1606881244754,
     "relativePath": "scripts\\UserMgr.js"
   },
   "b717fcf0-c348-4dcc-8aaf-35b6f5b7dc31": {
@@ -2233,11 +2233,6 @@
     "asset": 1606321990098,
     "meta": 1606321999736,
     "relativePath": "migration\\use_v2.0.x_cc.Toggle_event.js"
-  },
-  "90ae6d49-e76e-4940-8b79-b5a17735c7b6": {
-    "asset": 1606879382251,
-    "meta": 1606879571441,
-    "relativePath": "scripts\\HTTP.js"
   },
   "55caea5c-a6f1-4ae6-bd00-c797fc8ecb38": {
     "asset": 1606324722634,
@@ -2778,5 +2773,10 @@
     "asset": 1606621883592,
     "meta": 1606621968124,
     "relativePath": "scripts\\components\\CreateRole.js"
+  },
+  "90ae6d49-e76e-4940-8b79-b5a17735c7b6": {
+    "asset": 1606879382251,
+    "meta": 1606880453962,
+    "relativePath": "scripts\\HTTP.js"
   }
 }

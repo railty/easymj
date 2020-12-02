@@ -39,9 +39,7 @@ cc.Class({
         else{
             self.account = ret.account;
             self.sign = ret.sign;
-            //这里cc.vv.SI.hall = 169.254.245.17:9001;
-            cc.vv.http.url = "http://" + cc.vv.SI.hall;
-       
+            cc.vv.http.url = "https://" + cc.vv.SI.hall;
             self.login();
         }   
     },
