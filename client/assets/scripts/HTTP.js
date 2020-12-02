@@ -1,4 +1,4 @@
-var URL = "http://nings.ca:9000";
+var URL = "https://nings.ca:9000";
 
 cc.VERSION = 20161227;
 var HTTP = cc.Class({
