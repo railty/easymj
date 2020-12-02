@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "fibers version is ^1.0.15 under windows, is ^5.0.0 under ubuntu",
+  "main": "startAll.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "crypto-js": "3.1.2",
+    "express": "^4.14.0",
+    "fibers": "^5.0.0",
+    "log4js": "^1.0.1",
+    "mysql": "^2.11.1",
+    "rollup": "^2.33.3",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.7.4",
+    "svelte": "^3.30.0"
+  },
+  "scripts": {
+    "build": "rollup -w -c rollup.config.js",
+    "buildDev": "rollup -h",
+    "clientBuild": "C:\\CocosDashboard_1.0.10\\resources\\.editors\\Creator\\2.4.3\\CocosCreator.exe --path ..\\client\\ --build \"platform=web-mobile;debug=false;autoCompile=true\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup-plugin-postcss": "^3.1.8",
+    "svelte-preprocess": "^4.6.1"
+  }
+}
