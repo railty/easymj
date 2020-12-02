@@ -1,5 +1,7 @@
 # public/svelte/build
 # public/web-mobile
+server/package.json
+server/package-lock.json
 server/configs_local.js
 server/node_modules
 client/temp
