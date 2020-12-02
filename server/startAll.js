@@ -2,6 +2,7 @@ var db = require('./utils/db');
 var configs = require("./configs_local");
 db.init(configs.mysql());
 
+/*
 var configAccountServer = configs.account_server();
 var as = require('./account_server/account_server');
 as.start(configAccountServer);
@@ -16,8 +17,10 @@ client_service.start(configHallServer);
 room_service.start(configHallServer);
 
 
-var http_service = require("./majiang_server/http_service");
-var socket_service = require("./majiang_server/socket_service");
 var configGameServer = configs.game_server();
-http_service.start(configGameServer);
+var socket_service = require("./majiang_server/socket_service");
 socket_service.start(configGameServer);
+
+*/
+var http_service = require("./majiang_server/http_service");
+http_service.start(configGameServer);

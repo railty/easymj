@@ -1,9 +1,5 @@
-var URL = "http://127.0.0.1:9000";
-//var URL = "http://192.168.86.114:9000";
-//var URL = "http://497.93.188.77:9000";
+var URL = "http://nings.ca:9000";
 
- //var URL = "http://192.168.7.186:9000";
-//var URL = "http://47.93.188.77:9000";
 cc.VERSION = 20161227;
 var HTTP = cc.Class({
     extends: cc.Component,
