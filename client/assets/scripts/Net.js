@@ -40,8 +40,7 @@ var Global = cc.Class({
                 'force new connection': true,
                 'transports':['websocket', 'polling']
             }
-            //this.sio = window.io.connect("http://"+this.ip,opts);
-            this.sio = window.io.connect("127.0.0.1:8004",opts);
+            this.sio = window.io.connect("https://"+this.ip,opts);
             this.sio.on('reconnect',function(){
                 console.log('reconnection');
             });

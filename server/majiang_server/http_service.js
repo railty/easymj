@@ -166,8 +166,8 @@ function update(){
 		lastTickTime = Date.now();
 		gameServerInfo.load = roomMgr.getTotalRooms();
 		
-		http.get(config.ROOM_INT_IP,config.ROOM_INT_PORT,"/register_gs",gameServerInfo,function(ret,data){
-		//http.get(config.ROOM_EXT_IP,config.ROOM_EXT_PORT,"/register_gs",gameServerInfo,function(ret,data){
+//		http.get(config.ROOM_INT_IP,config.ROOM_INT_PORT,"/register_gs",gameServerInfo,function(ret,data){
+		http.get(config.ROOM_EXT_IP,config.ROOM_EXT_PORT,"/register_gs",gameServerInfo,function(ret,data){
 			if(ret == true){
 				if(data.errcode != 0){
 					console.log(data.errmsg);
@@ -181,7 +181,8 @@ function update(){
 				//
 				lastTickTime = 0;
 			}
-		});
+		}, config.HTTPS);
+		//shawn force it to be true
 
 		var mem = process.memoryUsage();
 		var format = function(bytes) {  

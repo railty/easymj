@@ -69,7 +69,7 @@ app.get('/register_gs',function(req,res){
 		else{
 			console.log(data.errmsg);
 		}
-	});
+	}, config.HTTPS);	
 });
 
 function chooseServer(){
@@ -119,7 +119,7 @@ exports.createRoom = function(account,userId,roomConf,fnCallback){
 					return;
 				}
 				fnCallback(102,null);
-			});	
+			}, config.HTTPS);	
 		}
 		else{
 			fnCallback(103,null);
@@ -149,7 +149,7 @@ exports.enterRoom = function(userId,name,roomId,fnCallback){
 			else{
 				callback(false);
 			}
-		});
+		}, config.HTTPS);
 	}
 
 	var enterRoomReq = function(serverinfo){
@@ -173,7 +173,7 @@ exports.enterRoom = function(userId,name,roomId,fnCallback){
 			else{
 				fnCallback(-1,null);
 			}
-		});
+		}, config.HTTPS);	
 	};
 
 	var chooseServerAndEnter = function(serverinfo){
@@ -225,7 +225,7 @@ exports.isServerOnline = function(ip,port,callback){
 		else{
 			callback(false);
 		}
-	});
+	}, config.HTTPS);
 };
 
 exports.start = function($config){

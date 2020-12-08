@@ -1,4 +1,4 @@
-NAME=web.game.com
+NAME=act.game.com
 # Generate a private key
 openssl genrsa -out $NAME.key 2048
 # Create a certificate-signing request

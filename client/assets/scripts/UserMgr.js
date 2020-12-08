@@ -39,8 +39,9 @@ cc.Class({
         else{
             self.account = ret.account;
             self.sign = ret.sign;
-            //cc.vv.http.url = "https://" + cc.vv.SI.hall;
-            cc.vv.http.url = "http://" + cc.vv.SI.hall;
+            cc.vv.http.url = "https://" + cc.vv.SI.hall;
+            //cc.vv.http.url = "http://" + cc.vv.SI.hall;
+            //shawn use https
             self.login();
         }   
     },

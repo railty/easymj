@@ -1,8 +1,6 @@
 server {
     server_name web.game.com;
-
     listen 80;
-
     return 301 https://$server_name$request_uri;
 }
 
@@ -11,13 +9,60 @@ server {
     server_name web.game.com;
 
     listen 443 ssl;
-    include snippets/self-signed-cert.conf;
+    include snippets/web-game-com.conf;
     include snippets/ssl-params.conf;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:8003;
     }
-
 }
 
+server {
+    server_name act.game.com;
 
+    listen 9000 ssl;
+    include snippets/act-game-com.conf;
+    include snippets/ssl-params.conf;
+
+    location / {
+        proxy_pass http://localhost:8000;
+    }
+}
+server {
+    server_name hall.game.com;
+
+    listen 9001 ssl;
+    include snippets/hall-game-com.conf;
+    include snippets/ssl-params.conf;
+
+    location / {
+        proxy_pass http://localhost:8001;
+    }
+}
+server {
+    server_name hall.game.com;
+
+    listen 9002 ssl;
+    include snippets/hall-game-com.conf;
+    include snippets/ssl-params.conf;
+
+    location / {
+        proxy_pass http://localhost:8002;
+    }
+}
+server {
+    server_name web.game.com;
+
+    listen 9004 ssl;
+    include snippets/web-game-com.conf;
+    include snippets/ssl-params.conf;
+
+    location / {
+        proxy_pass http://localhost:8004;
+
+#	proxy_http_version 1.1;
+#	proxy_set_header Host $host;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection "upgrade";
+    }
+}
