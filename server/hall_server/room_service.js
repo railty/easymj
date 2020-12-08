@@ -21,8 +21,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/register_gs',function(req,res){
-	
-	var ip = req.ip;
+	var ip = req.query.httpIP;;
 	var clientip = req.query.clientip;
 	var clientport = req.query.clientport;
 	var httpPort = req.query.httpPort;
@@ -59,6 +58,7 @@ app.get('/register_gs',function(req,res){
 		sign:crypto.md5(id+config.ROOM_PRI_KEY)
 	};
 	//获取服务器信息
+
 	http.get(ip,httpPort,"/get_server_info",reqdata,function(ret,data){
 		if(ret && data.errcode == 0){
 			for(var i = 0; i < data.userroominfo.length; i += 2){
@@ -230,6 +230,6 @@ exports.isServerOnline = function(ip,port,callback){
 
 exports.start = function($config){
 	config = $config;
-	app.listen(config.ROOM_INT_PORT,config.FOR_ROOM_IP);
-	console.log("room service is listening on " + config.FOR_ROOM_IP + ":" + config.ROOM_INT_PORT);
+	app.listen(config.ROOM_INT_PORT,config.ROOM_INT_IP);
+	console.log("room service is listening on " + config.ROOM_INT_IP + ":" + config.ROOM_INT_PORT);
 };

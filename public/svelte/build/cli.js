@@ -25,11 +25,21 @@ var app = (function () {
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
     function insert(target, node, anchor) {
         target.insertBefore(node, anchor || null);
     }
     function detach(node) {
         node.parentNode.removeChild(node);
+    }
+    function destroy_each(iterations, detaching) {
+        for (let i = 0; i < iterations.length; i += 1) {
+            if (iterations[i])
+                iterations[i].d(detaching);
+        }
     }
     function element(name) {
         return document.createElement(name);
@@ -52,6 +62,9 @@ var app = (function () {
     }
     function children(element) {
         return Array.from(element.childNodes);
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
     }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
@@ -244,6 +257,9 @@ var app = (function () {
         }
         set_current_component(parent_component);
     }
+    /**
+     * Base class for Svelte components. Used when dev=false.
+     */
     class SvelteComponent {
         $destroy() {
             destroy_component(this, 1);
@@ -268,7 +284,11 @@ var app = (function () {
     }
 
     function dispatch_dev(type, detail) {
-        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.30.0' }, detail)));
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.31.0' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev('SvelteDOMInsert', { target, node });
+        append(target, node);
     }
     function insert_dev(target, node, anchor) {
         dispatch_dev('SvelteDOMInsert', { target, node, anchor });
@@ -298,6 +318,15 @@ var app = (function () {
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
     }
+    function validate_each_argument(arg) {
+        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
+            let msg = '{#each} only iterates over array-like objects.';
+            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
+                msg += ' You can use a spread to convert this iterable into an array.';
+            }
+            throw new Error(msg);
+        }
+    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -305,6 +334,9 @@ var app = (function () {
             }
         }
     }
+    /**
+     * Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+     */
     class SvelteComponentDev extends SvelteComponent {
         constructor(options) {
             if (!options || (!options.target && !options.$$inline)) {
@@ -4768,6 +4800,536 @@ var app = (function () {
     var yeast_1 = yeast;
 
     /**
+     * Helpers.
+     */
+
+    var s$2 = 1000;
+    var m$2 = s$2 * 60;
+    var h$2 = m$2 * 60;
+    var d$2 = h$2 * 24;
+    var y$2 = d$2 * 365.25;
+
+    /**
+     * Parse or format the given `val`.
+     *
+     * Options:
+     *
+     *  - `long` verbose formatting [false]
+     *
+     * @param {String|Number} val
+     * @param {Object} options
+     * @throws {Error} throw an error if val is not a non-empty string or a number
+     * @return {String|Number}
+     * @api public
+     */
+
+    var ms$2 = function (val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === 'string' && val.length > 0) {
+        return parse$2(val)
+      } else if (type === 'number' && isNaN(val) === false) {
+        return options.long ?
+    			fmtLong$1(val) :
+    			fmtShort$1(val)
+      }
+      throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val))
+    };
+
+    /**
+     * Parse the given `str` and return milliseconds.
+     *
+     * @param {String} str
+     * @return {Number}
+     * @api private
+     */
+
+    function parse$2(str) {
+      str = String(str);
+      if (str.length > 10000) {
+        return
+      }
+      var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
+      if (!match) {
+        return
+      }
+      var n = parseFloat(match[1]);
+      var type = (match[2] || 'ms').toLowerCase();
+      switch (type) {
+        case 'years':
+        case 'year':
+        case 'yrs':
+        case 'yr':
+        case 'y':
+          return n * y$2
+        case 'days':
+        case 'day':
+        case 'd':
+          return n * d$2
+        case 'hours':
+        case 'hour':
+        case 'hrs':
+        case 'hr':
+        case 'h':
+          return n * h$2
+        case 'minutes':
+        case 'minute':
+        case 'mins':
+        case 'min':
+        case 'm':
+          return n * m$2
+        case 'seconds':
+        case 'second':
+        case 'secs':
+        case 'sec':
+        case 's':
+          return n * s$2
+        case 'milliseconds':
+        case 'millisecond':
+        case 'msecs':
+        case 'msec':
+        case 'ms':
+          return n
+        default:
+          return undefined
+      }
+    }
+
+    /**
+     * Short format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtShort$1(ms) {
+      if (ms >= d$2) {
+        return Math.round(ms / d$2) + 'd'
+      }
+      if (ms >= h$2) {
+        return Math.round(ms / h$2) + 'h'
+      }
+      if (ms >= m$2) {
+        return Math.round(ms / m$2) + 'm'
+      }
+      if (ms >= s$2) {
+        return Math.round(ms / s$2) + 's'
+      }
+      return ms + 'ms'
+    }
+
+    /**
+     * Long format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtLong$1(ms) {
+      return plural$2(ms, d$2, 'day') ||
+        plural$2(ms, h$2, 'hour') ||
+        plural$2(ms, m$2, 'minute') ||
+        plural$2(ms, s$2, 'second') ||
+        ms + ' ms'
+    }
+
+    /**
+     * Pluralization helper.
+     */
+
+    function plural$2(ms, n, name) {
+      if (ms < n) {
+        return
+      }
+      if (ms < n * 1.5) {
+        return Math.floor(ms / n) + ' ' + name
+      }
+      return Math.ceil(ms / n) + ' ' + name + 's'
+    }
+
+    var debug_1$2 = createCommonjsModule(function (module, exports) {
+    /**
+     * This is the common logic for both the Node.js and web browser
+     * implementations of `debug()`.
+     *
+     * Expose `debug()` as the module.
+     */
+
+    exports = module.exports = debug.debug = debug;
+    exports.coerce = coerce;
+    exports.disable = disable;
+    exports.enable = enable;
+    exports.enabled = enabled;
+    exports.humanize = ms$2;
+
+    /**
+     * The currently active debug mode names, and names to skip.
+     */
+
+    exports.names = [];
+    exports.skips = [];
+
+    /**
+     * Map of special "%n" handling functions, for the debug "format" argument.
+     *
+     * Valid key names are a single, lowercased letter, i.e. "n".
+     */
+
+    exports.formatters = {};
+
+    /**
+     * Previously assigned color.
+     */
+
+    var prevColor = 0;
+
+    /**
+     * Previous log timestamp.
+     */
+
+    var prevTime;
+
+    /**
+     * Select a color.
+     *
+     * @return {Number}
+     * @api private
+     */
+
+    function selectColor() {
+      return exports.colors[prevColor++ % exports.colors.length];
+    }
+
+    /**
+     * Create a debugger with the given `namespace`.
+     *
+     * @param {String} namespace
+     * @return {Function}
+     * @api public
+     */
+
+    function debug(namespace) {
+
+      // define the `disabled` version
+      function disabled() {
+      }
+      disabled.enabled = false;
+
+      // define the `enabled` version
+      function enabled() {
+
+        var self = enabled;
+
+        // set `diff` timestamp
+        var curr = +new Date();
+        var ms = curr - (prevTime || curr);
+        self.diff = ms;
+        self.prev = prevTime;
+        self.curr = curr;
+        prevTime = curr;
+
+        // add the `color` if not set
+        if (null == self.useColors) self.useColors = exports.useColors();
+        if (null == self.color && self.useColors) self.color = selectColor();
+
+        var args = new Array(arguments.length);
+        for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i];
+        }
+
+        args[0] = exports.coerce(args[0]);
+
+        if ('string' !== typeof args[0]) {
+          // anything else let's inspect with %o
+          args = ['%o'].concat(args);
+        }
+
+        // apply any `formatters` transformations
+        var index = 0;
+        args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+          // if we encounter an escaped % then don't increase the array index
+          if (match === '%%') return match;
+          index++;
+          var formatter = exports.formatters[format];
+          if ('function' === typeof formatter) {
+            var val = args[index];
+            match = formatter.call(self, val);
+
+            // now we need to remove `args[index]` since it's inlined in the `format`
+            args.splice(index, 1);
+            index--;
+          }
+          return match;
+        });
+
+        // apply env-specific formatting
+        args = exports.formatArgs.apply(self, args);
+
+        var logFn = enabled.log || exports.log || console.log.bind(console);
+        logFn.apply(self, args);
+      }
+      enabled.enabled = true;
+
+      var fn = exports.enabled(namespace) ? enabled : disabled;
+
+      fn.namespace = namespace;
+
+      return fn;
+    }
+
+    /**
+     * Enables a debug mode by namespaces. This can include modes
+     * separated by a colon and wildcards.
+     *
+     * @param {String} namespaces
+     * @api public
+     */
+
+    function enable(namespaces) {
+      exports.save(namespaces);
+
+      var split = (namespaces || '').split(/[\s,]+/);
+      var len = split.length;
+
+      for (var i = 0; i < len; i++) {
+        if (!split[i]) continue; // ignore empty strings
+        namespaces = split[i].replace(/[\\^$+?.()|[\]{}]/g, '\\$&').replace(/\*/g, '.*?');
+        if (namespaces[0] === '-') {
+          exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+        } else {
+          exports.names.push(new RegExp('^' + namespaces + '$'));
+        }
+      }
+    }
+
+    /**
+     * Disable debug output.
+     *
+     * @api public
+     */
+
+    function disable() {
+      exports.enable('');
+    }
+
+    /**
+     * Returns true if the given mode name is enabled, false otherwise.
+     *
+     * @param {String} name
+     * @return {Boolean}
+     * @api public
+     */
+
+    function enabled(name) {
+      var i, len;
+      for (i = 0, len = exports.skips.length; i < len; i++) {
+        if (exports.skips[i].test(name)) {
+          return false;
+        }
+      }
+      for (i = 0, len = exports.names.length; i < len; i++) {
+        if (exports.names[i].test(name)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    /**
+     * Coerce `val`.
+     *
+     * @param {Mixed} val
+     * @return {Mixed}
+     * @api private
+     */
+
+    function coerce(val) {
+      if (val instanceof Error) return val.stack || val.message;
+      return val;
+    }
+    });
+
+    var browser$3 = createCommonjsModule(function (module, exports) {
+    /**
+     * This is the web browser implementation of `debug()`.
+     *
+     * Expose `debug()` as the module.
+     */
+
+    exports = module.exports = debug_1$2;
+    exports.log = log;
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.storage = 'undefined' != typeof chrome
+                   && 'undefined' != typeof chrome.storage
+                      ? chrome.storage.local
+                      : localstorage();
+
+    /**
+     * Colors.
+     */
+
+    exports.colors = [
+      'lightseagreen',
+      'forestgreen',
+      'goldenrod',
+      'dodgerblue',
+      'darkorchid',
+      'crimson'
+    ];
+
+    /**
+     * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+     * and the Firebug extension (any Firefox version) are known
+     * to support "%c" CSS customizations.
+     *
+     * TODO: add a `localStorage` variable to explicitly enable/disable colors
+     */
+
+    function useColors() {
+      // is webkit? http://stackoverflow.com/a/16459606/376773
+      // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+      return (typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style) ||
+        // is firebug? http://stackoverflow.com/a/398120/376773
+        (window.console && (console.firebug || (console.exception && console.table))) ||
+        // is firefox >= v31?
+        // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+        (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+    }
+
+    /**
+     * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+     */
+
+    exports.formatters.j = function(v) {
+      try {
+        return JSON.stringify(v);
+      } catch (err) {
+        return '[UnexpectedJSONParseError]: ' + err.message;
+      }
+    };
+
+
+    /**
+     * Colorize log arguments if enabled.
+     *
+     * @api public
+     */
+
+    function formatArgs() {
+      var args = arguments;
+      var useColors = this.useColors;
+
+      args[0] = (useColors ? '%c' : '')
+        + this.namespace
+        + (useColors ? ' %c' : ' ')
+        + args[0]
+        + (useColors ? '%c ' : ' ')
+        + '+' + exports.humanize(this.diff);
+
+      if (!useColors) return args;
+
+      var c = 'color: ' + this.color;
+      args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+      // the final "%c" is somewhat tricky, because there could be other
+      // arguments passed either before or after the %c, so we need to
+      // figure out the correct index to insert the CSS into
+      var index = 0;
+      var lastC = 0;
+      args[0].replace(/%[a-z%]/g, function(match) {
+        if ('%%' === match) return;
+        index++;
+        if ('%c' === match) {
+          // we only are interested in the *last* %c
+          // (the user may have provided their own)
+          lastC = index;
+        }
+      });
+
+      args.splice(lastC, 0, c);
+      return args;
+    }
+
+    /**
+     * Invokes `console.log()` when available.
+     * No-op when `console.log` is not a "function".
+     *
+     * @api public
+     */
+
+    function log() {
+      // this hackery is required for IE8/9, where
+      // the `console.log` function doesn't have 'apply'
+      return 'object' === typeof console
+        && console.log
+        && Function.prototype.apply.call(console.log, console, arguments);
+    }
+
+    /**
+     * Save `namespaces`.
+     *
+     * @param {String} namespaces
+     * @api private
+     */
+
+    function save(namespaces) {
+      try {
+        if (null == namespaces) {
+          exports.storage.removeItem('debug');
+        } else {
+          exports.storage.debug = namespaces;
+        }
+      } catch(e) {}
+    }
+
+    /**
+     * Load `namespaces`.
+     *
+     * @return {String} returns the previously persisted debug modes
+     * @api private
+     */
+
+    function load() {
+      try {
+        return exports.storage.debug;
+      } catch(e) {}
+
+      // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+      if (typeof process !== 'undefined' && 'env' in process) {
+        return process.env.DEBUG;
+      }
+    }
+
+    /**
+     * Enable namespaces listed in `localStorage.debug` initially.
+     */
+
+    exports.enable(load());
+
+    /**
+     * Localstorage attempts to return the localstorage.
+     *
+     * This is necessary because safari throws
+     * when a user disables cookies/localstorage
+     * and you attempt to access it.
+     *
+     * @return {LocalStorage}
+     * @api private
+     */
+
+    function localstorage(){
+      try {
+        return window.localStorage;
+      } catch (e) {}
+    }
+    });
+
+    /**
      * Module dependencies.
      */
 
@@ -4776,7 +5338,7 @@ var app = (function () {
 
 
 
-    var debug$1 = browser('engine.io-client:polling');
+    var debug$1 = browser$3('engine.io-client:polling');
 
     /**
      * Module exports.
@@ -5021,7 +5583,7 @@ var app = (function () {
 
 
 
-    var debug$2 = browser('engine.io-client:polling-xhr');
+    var debug$2 = browser$3('engine.io-client:polling-xhr');
 
     /**
      * Module exports.
@@ -5688,7 +6250,7 @@ var app = (function () {
 
 
 
-    var debug$3 = browser('engine.io-client:websocket');
+    var debug$3 = browser$3('engine.io-client:websocket');
     var BrowserWebSocket = commonjsGlobal.WebSocket || commonjsGlobal.MozWebSocket;
     var NodeWebSocket;
     if (typeof window === 'undefined') {
@@ -6073,7 +6635,7 @@ var app = (function () {
 
 
 
-    var debug$4 = browser('engine.io-client:socket');
+    var debug$4 = browser$3('engine.io-client:socket');
 
 
 
@@ -6819,6 +7381,170 @@ var app = (function () {
 
     var engine_ioClient = lib;
 
+    var componentEmitter$2 = createCommonjsModule(function (module) {
+    /**
+     * Expose `Emitter`.
+     */
+
+    {
+      module.exports = Emitter;
+    }
+
+    /**
+     * Initialize a new `Emitter`.
+     *
+     * @api public
+     */
+
+    function Emitter(obj) {
+      if (obj) return mixin(obj);
+    }
+    /**
+     * Mixin the emitter properties.
+     *
+     * @param {Object} obj
+     * @return {Object}
+     * @api private
+     */
+
+    function mixin(obj) {
+      for (var key in Emitter.prototype) {
+        obj[key] = Emitter.prototype[key];
+      }
+      return obj;
+    }
+
+    /**
+     * Listen on the given `event` with `fn`.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.on =
+    Emitter.prototype.addEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+      (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+        .push(fn);
+      return this;
+    };
+
+    /**
+     * Adds an `event` listener that will be invoked a single
+     * time then automatically removed.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.once = function(event, fn){
+      function on() {
+        this.off(event, on);
+        fn.apply(this, arguments);
+      }
+
+      on.fn = fn;
+      this.on(event, on);
+      return this;
+    };
+
+    /**
+     * Remove the given callback for `event` or all
+     * registered callbacks.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.off =
+    Emitter.prototype.removeListener =
+    Emitter.prototype.removeAllListeners =
+    Emitter.prototype.removeEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+
+      // all
+      if (0 == arguments.length) {
+        this._callbacks = {};
+        return this;
+      }
+
+      // specific event
+      var callbacks = this._callbacks['$' + event];
+      if (!callbacks) return this;
+
+      // remove all handlers
+      if (1 == arguments.length) {
+        delete this._callbacks['$' + event];
+        return this;
+      }
+
+      // remove specific handler
+      var cb;
+      for (var i = 0; i < callbacks.length; i++) {
+        cb = callbacks[i];
+        if (cb === fn || cb.fn === fn) {
+          callbacks.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Emit `event` with the given args.
+     *
+     * @param {String} event
+     * @param {Mixed} ...
+     * @return {Emitter}
+     */
+
+    Emitter.prototype.emit = function(event){
+      this._callbacks = this._callbacks || {};
+      var args = [].slice.call(arguments, 1)
+        , callbacks = this._callbacks['$' + event];
+
+      if (callbacks) {
+        callbacks = callbacks.slice(0);
+        for (var i = 0, len = callbacks.length; i < len; ++i) {
+          callbacks[i].apply(this, args);
+        }
+      }
+
+      return this;
+    };
+
+    /**
+     * Return array of callbacks for `event`.
+     *
+     * @param {String} event
+     * @return {Array}
+     * @api public
+     */
+
+    Emitter.prototype.listeners = function(event){
+      this._callbacks = this._callbacks || {};
+      return this._callbacks['$' + event] || [];
+    };
+
+    /**
+     * Check if this emitter has `event` handlers.
+     *
+     * @param {String} event
+     * @return {Boolean}
+     * @api public
+     */
+
+    Emitter.prototype.hasListeners = function(event){
+      return !! this.listeners(event).length;
+    };
+    });
+
     var toArray_1 = toArray;
 
     function toArray(list, index) {
@@ -6927,7 +7653,7 @@ var app = (function () {
      * Shortcut to `Emitter#emit`.
      */
 
-    var emit = componentEmitter$1.prototype.emit;
+    var emit = componentEmitter$2.prototype.emit;
 
     /**
      * `Socket` constructor.
@@ -6955,7 +7681,7 @@ var app = (function () {
      * Mix in `Emitter`.
      */
 
-    componentEmitter$1(Socket.prototype);
+    componentEmitter$2(Socket.prototype);
 
     /**
      * Subscribe to open, close and packet events
@@ -7488,7 +8214,7 @@ var app = (function () {
      * Mix in `Emitter`.
      */
 
-    componentEmitter$1(Manager.prototype);
+    componentEmitter$2(Manager.prototype);
 
     /**
      * Sets the `reconnection` config.
@@ -8091,11 +8817,675 @@ var app = (function () {
         return p;
     }
 
-    /* src\cli\Cli.svelte generated by Svelte v3.30.0 */
+    /* src\cli\Cli.svelte generated by Svelte v3.31.0 */
 
     const { console: console_1 } = globals;
 
     const file = "src\\cli\\Cli.svelte";
+
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[17] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[17] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[17] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_3(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[17] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[26] = list[i];
+    	child_ctx[28] = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[29] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_6(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[32] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_7(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[29] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_8(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[29] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_9(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[39] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_10(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[29] = list[i];
+    	return child_ctx;
+    }
+
+    // (304:3) {#each mj as m}
+    function create_each_block_10(ctx) {
+    	let td;
+    	let td_class_value;
+    	let td_style_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			attr_dev(td, "style", td_style_value = /*m*/ ctx[29].used ? "opacity:0.15" : "opacity:1");
+    			add_location(td, file, 304, 3, 6594);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*tiles*/ 8 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    				attr_dev(td, "class", td_class_value);
+    			}
+
+    			if (dirty[0] & /*tiles*/ 8 && td_style_value !== (td_style_value = /*m*/ ctx[29].used ? "opacity:0.15" : "opacity:1")) {
+    				attr_dev(td, "style", td_style_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_10.name,
+    		type: "each",
+    		source: "(304:3) {#each mj as m}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (302:1) {#each tiles as mj}
+    function create_each_block_9(ctx) {
+    	let tr;
+    	let t;
+    	let each_value_10 = /*mj*/ ctx[39];
+    	validate_each_argument(each_value_10);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_10.length; i += 1) {
+    		each_blocks[i] = create_each_block_10(get_each_context_10(ctx, each_value_10, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			tr = element("tr");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t = space();
+    			attr_dev(tr, "class", "svelte-wqqdn5");
+    			add_location(tr, file, 302, 2, 6567);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, tr, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(tr, null);
+    			}
+
+    			append_dev(tr, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*tiles*/ 8) {
+    				each_value_10 = /*mj*/ ctx[39];
+    				validate_each_argument(each_value_10);
+    				let i;
+
+    				for (i = 0; i < each_value_10.length; i += 1) {
+    					const child_ctx = get_each_context_10(ctx, each_value_10, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_10(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(tr, t);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_10.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(tr);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_9.name,
+    		type: "each",
+    		source: "(302:1) {#each tiles as mj}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (316:3) {#each seat as m}
+    function create_each_block_8(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			add_location(td, file, 316, 4, 6806);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    				attr_dev(td, "class", td_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_8.name,
+    		type: "each",
+    		source: "(316:3) {#each seat as m}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (322:4) {#each ms as m}
+    function create_each_block_7(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			add_location(td, file, 322, 5, 6933);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*showSeats*/ 4 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    				attr_dev(td, "class", td_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_7.name,
+    		type: "each",
+    		source: "(322:4) {#each ms as m}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (321:3) {#each showSeats[idx] as ms}
+    function create_each_block_6(ctx) {
+    	let t0;
+    	let td;
+    	let each_value_7 = /*ms*/ ctx[32];
+    	validate_each_argument(each_value_7);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_7.length; i += 1) {
+    		each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t0 = space();
+    			td = element("td");
+    			td.textContent = "|";
+    			attr_dev(td, "class", "svelte-wqqdn5");
+    			add_location(td, file, 324, 4, 6991);
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, td, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*showSeats*/ 4) {
+    				each_value_7 = /*ms*/ ctx[32];
+    				validate_each_argument(each_value_7);
+    				let i;
+
+    				for (i = 0; i < each_value_7.length; i += 1) {
+    					const child_ctx = get_each_context_7(ctx, each_value_7, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_7(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(t0.parentNode, t0);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_7.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_6.name,
+    		type: "each",
+    		source: "(321:3) {#each showSeats[idx] as ms}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (329:3) {#each discardSeats[idx] as m}
+    function create_each_block_5(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			add_location(td, file, 329, 4, 7067);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*discardSeats*/ 2 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    				attr_dev(td, "class", td_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_5.name,
+    		type: "each",
+    		source: "(329:3) {#each discardSeats[idx] as m}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (314:2) {#each seats as seat, idx}
+    function create_each_block_4(ctx) {
+    	let tr0;
+    	let t0;
+    	let tr1;
+    	let t1;
+    	let tr2;
+    	let t2;
+    	let each_value_8 = /*seat*/ ctx[26];
+    	validate_each_argument(each_value_8);
+    	let each_blocks_2 = [];
+
+    	for (let i = 0; i < each_value_8.length; i += 1) {
+    		each_blocks_2[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
+    	}
+
+    	let each_value_6 = /*showSeats*/ ctx[2][/*idx*/ ctx[28]];
+    	validate_each_argument(each_value_6);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_6.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
+    	}
+
+    	let each_value_5 = /*discardSeats*/ ctx[1][/*idx*/ ctx[28]];
+    	validate_each_argument(each_value_5);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_5.length; i += 1) {
+    		each_blocks[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			tr0 = element("tr");
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t0 = space();
+    			tr1 = element("tr");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t1 = space();
+    			tr2 = element("tr");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t2 = space();
+    			attr_dev(tr0, "class", "svelte-wqqdn5");
+    			add_location(tr0, file, 314, 2, 6776);
+    			attr_dev(tr1, "class", "svelte-wqqdn5");
+    			add_location(tr1, file, 319, 2, 6871);
+    			attr_dev(tr2, "class", "svelte-wqqdn5");
+    			add_location(tr2, file, 327, 2, 7024);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, tr0, anchor);
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(tr0, null);
+    			}
+
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, tr1, anchor);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(tr1, null);
+    			}
+
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, tr2, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(tr2, null);
+    			}
+
+    			append_dev(tr2, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1) {
+    				each_value_8 = /*seat*/ ctx[26];
+    				validate_each_argument(each_value_8);
+    				let i;
+
+    				for (i = 0; i < each_value_8.length; i += 1) {
+    					const child_ctx = get_each_context_8(ctx, each_value_8, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_2[i] = create_each_block_8(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(tr0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+
+    				each_blocks_2.length = each_value_8.length;
+    			}
+
+    			if (dirty[0] & /*showSeats*/ 4) {
+    				each_value_6 = /*showSeats*/ ctx[2][/*idx*/ ctx[28]];
+    				validate_each_argument(each_value_6);
+    				let i;
+
+    				for (i = 0; i < each_value_6.length; i += 1) {
+    					const child_ctx = get_each_context_6(ctx, each_value_6, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_6(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(tr1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_6.length;
+    			}
+
+    			if (dirty[0] & /*discardSeats*/ 2) {
+    				each_value_5 = /*discardSeats*/ ctx[1][/*idx*/ ctx[28]];
+    				validate_each_argument(each_value_5);
+    				let i;
+
+    				for (i = 0; i < each_value_5.length; i += 1) {
+    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_5(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(tr2, t2);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_5.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(tr0);
+    			destroy_each(each_blocks_2, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(tr1);
+    			destroy_each(each_blocks_1, detaching);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(tr2);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_4.name,
+    		type: "each",
+    		source: "(314:2) {#each seats as seat, idx}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (339:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+    function create_each_block_3(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-tiao" + " svelte-wqqdn5");
+    			add_location(td, file, 339, 3, 7218);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_3.name,
+    		type: "each",
+    		source: "(339:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (344:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+    function create_each_block_2(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-bing" + " svelte-wqqdn5");
+    			add_location(td, file, 344, 3, 7328);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(344:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (349:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+    function create_each_block_1(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-wan" + " svelte-wqqdn5");
+    			add_location(td, file, 349, 3, 7438);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(349:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (354:2) {#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}
+    function create_each_block(ctx) {
+    	let td;
+    	let td_class_value;
+
+    	const block = {
+    		c: function create() {
+    			td = element("td");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + " svelte-wqqdn5");
+    			add_location(td, file, 354, 3, 7576);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, td, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(td);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block.name,
+    		type: "each",
+    		source: "(354:2) {#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}",
+    		ctx
+    	});
+
+    	return block;
+    }
 
     function create_fragment(ctx) {
     	let button0;
@@ -8104,11 +9494,75 @@ var app = (function () {
     	let t3;
     	let button2;
     	let t5;
-    	let div;
+    	let button3;
     	let t7;
-    	let hr;
+    	let button4;
+    	let t9;
+    	let button5;
+    	let t11;
+    	let div0;
+    	let table0;
+    	let t12;
+    	let div1;
+    	let table1;
+    	let t13;
+    	let table2;
+    	let tr0;
+    	let t14;
+    	let tr1;
+    	let t15;
+    	let tr2;
+    	let t16;
+    	let tr3;
     	let mounted;
     	let dispose;
+    	let each_value_9 = /*tiles*/ ctx[3];
+    	validate_each_argument(each_value_9);
+    	let each_blocks_5 = [];
+
+    	for (let i = 0; i < each_value_9.length; i += 1) {
+    		each_blocks_5[i] = create_each_block_9(get_each_context_9(ctx, each_value_9, i));
+    	}
+
+    	let each_value_4 = /*seats*/ ctx[0];
+    	validate_each_argument(each_value_4);
+    	let each_blocks_4 = [];
+
+    	for (let i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks_4[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    	}
+
+    	let each_value_3 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	validate_each_argument(each_value_3);
+    	let each_blocks_3 = [];
+
+    	for (let i = 0; i < 9; i += 1) {
+    		each_blocks_3[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	}
+
+    	let each_value_2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	validate_each_argument(each_value_2);
+    	let each_blocks_2 = [];
+
+    	for (let i = 0; i < 9; i += 1) {
+    		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	let each_value_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < 9; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = ["east", "west", "south", "north", "zhong", "fa", "bai"];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < 7; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
 
     	const block = {
     		c: function create() {
@@ -8121,20 +9575,90 @@ var app = (function () {
     			button2 = element("button");
     			button2.textContent = "Get Server Info";
     			t5 = space();
-    			div = element("div");
-    			div.textContent = "111111111111";
+    			button3 = element("button");
+    			button3.textContent = "Get Game Info";
     			t7 = space();
-    			hr = element("hr");
-    			attr_dev(button0, "class", "svelte-1cverj0");
-    			add_location(button0, file, 57, 0, 1175);
-    			attr_dev(button1, "class", "svelte-1cverj0");
-    			add_location(button1, file, 58, 0, 1217);
-    			attr_dev(button2, "class", "svelte-1cverj0");
-    			add_location(button2, file, 59, 0, 1256);
-    			attr_dev(div, "class", "svelte-1cverj0");
-    			add_location(div, file, 60, 0, 1315);
-    			attr_dev(hr, "class", "svelte-1cverj0");
-    			add_location(hr, file, 64, 0, 1347);
+    			button4 = element("button");
+    			button4.textContent = "Next";
+    			t9 = space();
+    			button5 = element("button");
+    			button5.textContent = "AutoPlay";
+    			t11 = space();
+    			div0 = element("div");
+    			table0 = element("table");
+
+    			for (let i = 0; i < each_blocks_5.length; i += 1) {
+    				each_blocks_5[i].c();
+    			}
+
+    			t12 = space();
+    			div1 = element("div");
+    			table1 = element("table");
+
+    			for (let i = 0; i < each_blocks_4.length; i += 1) {
+    				each_blocks_4[i].c();
+    			}
+
+    			t13 = space();
+    			table2 = element("table");
+    			tr0 = element("tr");
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_3[i].c();
+    			}
+
+    			t14 = space();
+    			tr1 = element("tr");
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t15 = space();
+    			tr2 = element("tr");
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t16 = space();
+    			tr3 = element("tr");
+
+    			for (let i = 0; i < 7; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(button0, "class", "svelte-wqqdn5");
+    			add_location(button0, file, 293, 0, 6220);
+    			attr_dev(button1, "class", "svelte-wqqdn5");
+    			add_location(button1, file, 294, 0, 6261);
+    			attr_dev(button2, "class", "svelte-wqqdn5");
+    			add_location(button2, file, 295, 0, 6299);
+    			attr_dev(button3, "class", "svelte-wqqdn5");
+    			add_location(button3, file, 296, 0, 6357);
+    			attr_dev(button4, "class", "svelte-wqqdn5");
+    			add_location(button4, file, 297, 0, 6411);
+    			attr_dev(button5, "class", "svelte-wqqdn5");
+    			add_location(button5, file, 298, 0, 6449);
+    			set_style(table0, "background-color", "indigo");
+    			attr_dev(table0, "class", "svelte-wqqdn5");
+    			add_location(table0, file, 300, 1, 6502);
+    			attr_dev(div0, "class", "svelte-wqqdn5");
+    			add_location(div0, file, 299, 0, 6495);
+    			attr_dev(table1, "class", "svelte-wqqdn5");
+    			add_location(table1, file, 312, 1, 6737);
+    			attr_dev(div1, "class", "svelte-wqqdn5");
+    			add_location(div1, file, 311, 0, 6730);
+    			attr_dev(tr0, "class", "svelte-wqqdn5");
+    			add_location(tr0, file, 337, 1, 7167);
+    			attr_dev(tr1, "class", "svelte-wqqdn5");
+    			add_location(tr1, file, 342, 1, 7277);
+    			attr_dev(tr2, "class", "svelte-wqqdn5");
+    			add_location(tr2, file, 347, 1, 7387);
+    			attr_dev(tr3, "class", "svelte-wqqdn5");
+    			add_location(tr3, file, 352, 1, 7496);
+    			attr_dev(table2, "class", "svelte-wqqdn5");
+    			add_location(table2, file, 336, 0, 7158);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8146,21 +9670,118 @@ var app = (function () {
     			insert_dev(target, t3, anchor);
     			insert_dev(target, button2, anchor);
     			insert_dev(target, t5, anchor);
-    			insert_dev(target, div, anchor);
+    			insert_dev(target, button3, anchor);
     			insert_dev(target, t7, anchor);
-    			insert_dev(target, hr, anchor);
+    			insert_dev(target, button4, anchor);
+    			insert_dev(target, t9, anchor);
+    			insert_dev(target, button5, anchor);
+    			insert_dev(target, t11, anchor);
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, table0);
+
+    			for (let i = 0; i < each_blocks_5.length; i += 1) {
+    				each_blocks_5[i].m(table0, null);
+    			}
+
+    			insert_dev(target, t12, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, table1);
+
+    			for (let i = 0; i < each_blocks_4.length; i += 1) {
+    				each_blocks_4[i].m(table1, null);
+    			}
+
+    			insert_dev(target, t13, anchor);
+    			insert_dev(target, table2, anchor);
+    			append_dev(table2, tr0);
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_3[i].m(tr0, null);
+    			}
+
+    			append_dev(table2, t14);
+    			append_dev(table2, tr1);
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_2[i].m(tr1, null);
+    			}
+
+    			append_dev(table2, t15);
+    			append_dev(table2, tr2);
+
+    			for (let i = 0; i < 9; i += 1) {
+    				each_blocks_1[i].m(tr2, null);
+    			}
+
+    			append_dev(table2, t16);
+    			append_dev(table2, tr3);
+
+    			for (let i = 0; i < 7; i += 1) {
+    				each_blocks[i].m(tr3, null);
+    			}
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*setup*/ ctx[2], false, false, false),
-    					listen_dev(button1, "click", /*send*/ ctx[1], false, false, false),
-    					listen_dev(button2, "click", /*getServerInfo*/ ctx[0], false, false, false)
+    					listen_dev(button0, "click", /*setup*/ ctx[6], false, false, false),
+    					listen_dev(button1, "click", /*send*/ ctx[5], false, false, false),
+    					listen_dev(button2, "click", /*getServerInfo*/ ctx[4], false, false, false),
+    					listen_dev(button3, "click", /*getGameInfo*/ ctx[7], false, false, false),
+    					listen_dev(button4, "click", /*next*/ ctx[8], false, false, false),
+    					listen_dev(button5, "click", /*autoPlay*/ ctx[9], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*tiles*/ 8) {
+    				each_value_9 = /*tiles*/ ctx[3];
+    				validate_each_argument(each_value_9);
+    				let i;
+
+    				for (i = 0; i < each_value_9.length; i += 1) {
+    					const child_ctx = get_each_context_9(ctx, each_value_9, i);
+
+    					if (each_blocks_5[i]) {
+    						each_blocks_5[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_5[i] = create_each_block_9(child_ctx);
+    						each_blocks_5[i].c();
+    						each_blocks_5[i].m(table0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_5.length; i += 1) {
+    					each_blocks_5[i].d(1);
+    				}
+
+    				each_blocks_5.length = each_value_9.length;
+    			}
+
+    			if (dirty[0] & /*discardSeats, showSeats, seats*/ 7) {
+    				each_value_4 = /*seats*/ ctx[0];
+    				validate_each_argument(each_value_4);
+    				let i;
+
+    				for (i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks_4[i]) {
+    						each_blocks_4[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_4[i] = create_each_block_4(child_ctx);
+    						each_blocks_4[i].c();
+    						each_blocks_4[i].m(table1, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_4.length; i += 1) {
+    					each_blocks_4[i].d(1);
+    				}
+
+    				each_blocks_4.length = each_value_4.length;
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -8170,9 +9791,23 @@ var app = (function () {
     			if (detaching) detach_dev(t3);
     			if (detaching) detach_dev(button2);
     			if (detaching) detach_dev(t5);
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(button3);
     			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(hr);
+    			if (detaching) detach_dev(button4);
+    			if (detaching) detach_dev(t9);
+    			if (detaching) detach_dev(button5);
+    			if (detaching) detach_dev(t11);
+    			if (detaching) detach_dev(div0);
+    			destroy_each(each_blocks_5, detaching);
+    			if (detaching) detach_dev(t12);
+    			if (detaching) detach_dev(div1);
+    			destroy_each(each_blocks_4, detaching);
+    			if (detaching) detach_dev(t13);
+    			if (detaching) detach_dev(table2);
+    			destroy_each(each_blocks_3, detaching);
+    			destroy_each(each_blocks_2, detaching);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_each(each_blocks, detaching);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -8187,6 +9822,29 @@ var app = (function () {
     	});
 
     	return block;
+    }
+
+    function tile(id) {
+    	//筒
+    	if (id >= 0 && id < 9) return {
+    		id,
+    		tp: "bing",
+    		num: id + 1,
+    		icon: `${id + 1}-bing`
+    	}; else //条
+    	if (id >= 9 && id < 18) return {
+    		id,
+    		tp: "tiao",
+    		num: id - 9 + 1,
+    		icon: `${id - 9 + 1}-tiao`
+    	}; else //万	
+    	if (id >= 18 && id < 27) return {
+    		id,
+    		tp: "wan",
+    		num: id - 18 + 1,
+    		icon: `${id - 18 + 1}-wan`
+    	}; else //这里改动加上中发白
+    	if (id == 27) return { id, tp: "zhong", icon: "zhong" }; else if (id == 28) return { id, tp: "fa", icon: "fa" }; else if (id == 29) return { id, tp: "bai", icon: "bai" }; else if (id == 30) return { id, tp: "east", icon: "east" }; else if (id == 31) return { id, tp: "west", icon: "west" }; else if (id == 32) return { id, tp: "south", icon: "south" }; else if (id == 33) return { id, tp: "north", icon: "north" };
     }
 
     function instance($$self, $$props, $$invalidate) {
@@ -8240,6 +9898,192 @@ var app = (function () {
     		});
     	}
 
+    	let tps = {
+    		1: "CHUPAI",
+    		2: "MOPAI",
+    		3: "PENG",
+    		4: "GANG",
+    		5: "HU",
+    		6: "ZIMO",
+    		7: "CHI"
+    	};
+
+    	async function getGameInfo() {
+    		var reqdata = { game_id: "1607291321167482605" };
+    		let rc = await callServer("GET", "/get_game_info", reqdata);
+    		gameInfo = JSON.parse(rc);
+    		gameInfo = gameInfo.gameinfo;
+    		gameInfo.base_info = JSON.parse(gameInfo.base_info);
+    		gameInfo.action_records = JSON.parse(gameInfo.action_records);
+
+    		actions = gameInfo.action_records.reduce(
+    			(last, cur) => {
+    				let l = last[last.length - 1];
+
+    				if (l.length < 3) {
+    					l.push(cur);
+    				} else {
+    					last.push([cur]);
+    				}
+
+    				return last;
+    			},
+    			[[]]
+    		);
+
+    		actions = actions.map(a => {
+    			return {
+    				seat: a[0],
+    				tp: tps[a[1]],
+    				tile: tile(a[2])
+    			};
+    		});
+
+    		console.log(actions);
+
+    		$$invalidate(10, mjs = gameInfo.base_info.mahjongs.map((id, idx) => {
+    			return tile(id);
+    		}));
+
+    		for (let i = 0; i <= 13 * 4; i++) $$invalidate(10, mjs[i].used = true, mjs);
+    		console.log(mjs);
+    		$$invalidate(0, seats = gameInfo.base_info.game_seats);
+
+    		$$invalidate(0, seats = seats.map(seat => {
+    			if (seat.length > 13) {
+    				let s = seat.slice(0, 13);
+
+    				s = s.sort((a, b) => {
+    					return a - b;
+    				});
+
+    				seat = [...s, seat[13]];
+    			} else {
+    				seat = seat.sort((a, b) => {
+    					return a - b;
+    				});
+    			}
+
+    			seat = seat.map(id => {
+    				return tile(id);
+    			});
+
+    			return seat;
+    		}));
+
+    		console.log(gameInfo);
+    		console.log(seats);
+    	}
+
+    	let gameInfo = null;
+    	let mjs = [];
+    	let seats = [];
+    	let actions = [];
+    	let name = "xxxx";
+    	let lastAction;
+
+    	function next() {
+    		let action = actions.shift();
+    		if (!action) return 0;
+
+    		if (action.tp == "CHUPAI") {
+    			let seat = seats[action.seat];
+
+    			let i = seat.findIndex(e => {
+    				return e.id == action.tile.id;
+    			});
+
+    			console.log(i);
+    			seat.splice(i, 1);
+
+    			seat = seat.sort((a, b) => {
+    				return a.id - b.id;
+    			});
+
+    			$$invalidate(0, seats);
+    			discardSeats[action.seat].push(action.tile);
+    			$$invalidate(1, discardSeats);
+    		} else if (action.tp == "MOPAI") {
+    			let i;
+
+    			for (i = 0; i < mjs.length; i++) {
+    				if (!mjs[i].used) {
+    					break;
+    				}
+    			}
+
+    			//should be same
+    			//mjs[i].id == action.tile.id
+    			$$invalidate(10, mjs[i].used = true, mjs);
+
+    			seats[action.seat].push(action.tile);
+    			$$invalidate(0, seats);
+    		} else if (action.tp == "PENG") {
+    			console.log("peng");
+    			let lastCard = discardSeats[lastAction.seat].pop();
+    			let seat = seats[action.seat];
+    			let i = seat.findIndex(e => e.id == lastCard.id);
+    			let card1 = seat.splice(i, 1);
+    			i = seat.findIndex(e => e.id == lastCard.id);
+    			let card2 = seat.splice(i, 1);
+    			showSeats[action.seat].push([lastCard, card1[0], card2[0]]);
+    			$$invalidate(2, showSeats);
+    			$$invalidate(1, discardSeats);
+    			$$invalidate(0, seats);
+    		} else if (action.tp == "GANG") {
+    			console.log("gang");
+
+    			if (lastAction.seat == action.seat) ; else {
+    				//normal gang
+    				let lastCard = discardSeats[lastAction.seat].pop(); //self, an gang or xu gang
+
+    				let seat = seats[action.seat];
+    				let i = seat.findIndex(e => e.id == lastCard.id);
+    				let card1 = seat.splice(i, 1);
+    				i = seat.findIndex(e => e.id == lastCard.id);
+    				let card2 = seat.splice(i, 1);
+    				i = seat.findIndex(e => e.id == lastCard.id);
+    				let card3 = seat.splice(i, 1);
+    				showSeats[action.seat].push([lastCard, card1[0], card2[0], card3[0]]);
+    			}
+
+    			//after gang, it it his turn to mo pai again, a regualr mo pai from begining, not the end.
+    			$$invalidate(2, showSeats);
+
+    			$$invalidate(1, discardSeats);
+    			$$invalidate(0, seats);
+    		} else if (action.tp == "HU") {
+    			console.log("hu");
+    			let lastCard = discardSeats[lastAction.seat].pop();
+    			let seat = seats[action.seat];
+    			seat.push(lastCard);
+    			$$invalidate(2, showSeats);
+    			$$invalidate(1, discardSeats);
+    			$$invalidate(0, seats);
+    		} else if (action.tp == "ZIMO") {
+    			console.log("zimo");
+    			$$invalidate(2, showSeats);
+    			$$invalidate(1, discardSeats);
+    			$$invalidate(0, seats);
+    		} else {
+    			console.log(`unknow action tp: ${action.tp}`);
+    		}
+
+    		lastAction = action;
+    		return 1;
+    	}
+
+    	function autoPlay() {
+    		let proc = setInterval(
+    			() => {
+    				if (next() == 0) clearInterval(proc);
+    			},
+    			500
+    		);
+    	}
+
+    	let discardSeats = [[], [], [], []];
+    	let showSeats = [[], [], [], []];
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -8254,24 +10098,81 @@ var app = (function () {
     		getServerInfo,
     		sio,
     		send,
-    		setup
+    		setup,
+    		tile,
+    		tps,
+    		getGameInfo,
+    		gameInfo,
+    		mjs,
+    		seats,
+    		actions,
+    		name,
+    		lastAction,
+    		next,
+    		autoPlay,
+    		discardSeats,
+    		showSeats,
+    		tiles
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("sio" in $$props) sio = $$props.sio;
+    		if ("tps" in $$props) tps = $$props.tps;
+    		if ("gameInfo" in $$props) gameInfo = $$props.gameInfo;
+    		if ("mjs" in $$props) $$invalidate(10, mjs = $$props.mjs);
+    		if ("seats" in $$props) $$invalidate(0, seats = $$props.seats);
+    		if ("actions" in $$props) actions = $$props.actions;
+    		if ("name" in $$props) name = $$props.name;
+    		if ("lastAction" in $$props) lastAction = $$props.lastAction;
+    		if ("discardSeats" in $$props) $$invalidate(1, discardSeats = $$props.discardSeats);
+    		if ("showSeats" in $$props) $$invalidate(2, showSeats = $$props.showSeats);
+    		if ("tiles" in $$props) $$invalidate(3, tiles = $$props.tiles);
     	};
+
+    	let tiles;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [getServerInfo, send, setup];
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty[0] & /*mjs*/ 1024) {
+    			 $$invalidate(3, tiles = mjs.reduce(
+    				(last, cur) => {
+    					let l = last[last.length - 1];
+
+    					if (l.length < 2 * 17) {
+    						l.push(cur);
+    					} else {
+    						last.push([cur]);
+    					}
+
+    					return last;
+    				},
+    				[[]]
+    			));
+    		}
+    	};
+
+    	return [
+    		seats,
+    		discardSeats,
+    		showSeats,
+    		tiles,
+    		getServerInfo,
+    		send,
+    		setup,
+    		getGameInfo,
+    		next,
+    		autoPlay,
+    		mjs
+    	];
     }
 
     class Cli extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, {});
+    		init(this, options, instance, create_fragment, safe_not_equal, {}, [-1, -1]);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,

@@ -23,7 +23,6 @@ function check_account(req,res){
 	*/
 	return true;
 }
-
 //设置跨域访问
 app.all('*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -312,6 +311,6 @@ app.get('/is_server_online',function(req,res){
 
 exports.start = function($config){
 	config = $config;
-	app.listen(config.HALL_INT_PORT);
-	console.log("client service is listening on port " + config.HALL_INT_PORT);
+	app.listen(config.CLIENT_INT_PORT, config.CLIENT_INT_IP);
+	console.log("client service is listening on port " + config.CLIENT_INT_PORT + ", on IP " + config.CLIENT_INT_IP);
 };

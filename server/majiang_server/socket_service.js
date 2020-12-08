@@ -6,7 +6,7 @@ var roomMgr = require('./roommgr');
 var userMgr = require('./usermgr');
 var io = null;
 exports.start = function(config,mgr){
-	io = require('socket.io')(config.CLIENT_PORT);
+	io = require('socket.io')(config.SOCKET_INT_PORT);
 	//接受的客户端里的东西吧
 	io.sockets.on('connection',function(socket){
 		socket.on('login',function(data){
@@ -451,5 +451,5 @@ exports.start = function(config,mgr){
 		});
 	});
 
-	console.log("game server is listening on " + config.CLIENT_PORT);	
+	console.log("game socket server is listening on " + config.SOCKET_INT_PORT);
 };

@@ -1336,6 +1336,7 @@ exports.begin = function(roomId) {
            userMgr.sendMsg(s.userId,'game_dingque_push');
         }
     }
+    construct_game_base_info(game);
 };
 
 exports.huanSanZhang = function(userId,p1,p2,p3){

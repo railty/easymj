@@ -1,3 +1,5 @@
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 var db = require('./utils/db');
 var configs = require("./configs_local");
 db.init(configs.mysql());
@@ -9,9 +11,11 @@ var dapi = require('./account_server/dealer_api');
 dapi.start(configAccountServer);
 
 var configHallServer = configs.hall_server();
-var client_service = require("./hall_Server/client_service");
+
+var client_service = require("./hall_server/client_service");
 client_service.start(configHallServer);
-var room_service = require("./hall_Server/room_service");
+
+var room_service = require("./hall_server/room_service");
 room_service.start(configHallServer);
 
 var configGameServer = configs.game_server();

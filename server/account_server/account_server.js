@@ -15,9 +15,9 @@ var config = null;
 
 exports.start = function(cfg){
 	config = cfg;
-	hallAddr = config.HALL_IP  + ":" + config.HALL_EXT_PORT;
-	app.listen(config.CLIENT_PORT);
-	console.log("account server is listening on " + config.CLIENT_PORT);
+	hallAddr = config.CLIENT_EXT_IP  + ":" + config.CLIENT_EXT_PORT;
+	app.listen(config.ACT_INT_PORT);
+	console.log("account server is listening on " + config.ACT_INT_PORT);
 }
 
 //设置跨域访问

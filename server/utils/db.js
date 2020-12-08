@@ -647,6 +647,26 @@ exports.delete_games = function(room_uuid,callback){
     });
 }
 
+exports.get_game = function(room_uuid,callback){
+    callback = callback == null? nop:callback;
+    if(room_uuid == null){
+        callback(false);
+    }    
+    //var sql = "SELECT * FROM t_games";
+    var sql = "SELECT * FROM t_games WHERE room_uuid = '{0}'";
+    sql = sql.format(room_uuid);
+    console.log(sql);
+    query(sql,function(err,rows,fields){
+        if(err){
+            callback(false);
+            throw err;
+        }
+        else{
+            callback(rows[0]);
+        }
+    });
+}
+
 exports.archive_games = function(room_uuid,callback){
     callback = callback == null? nop:callback;
     if(room_uuid == null){

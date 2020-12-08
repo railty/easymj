@@ -12,9 +12,11 @@ var config = null;
 var serverIp = "";
 
 //测试
-app.use(express.static('./public/'));
+app.use(express.static(__dirname+"/../../public"));
 
 app.all('*', function(req, res, next) {
+	console.log(req.originalUrl);
+
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -49,6 +51,21 @@ app.get('/get_server_info',function(req,res){
 	http.send(res,0,"ok",{userroominfo:arr});
 });
 
+app.get('/get_game_info',function(req,res){
+	let room_uuid = req.query.game_id;
+	console.log(room_uuid);
+
+	db.get_game(room_uuid, function(ret) {
+
+		if(ret){
+			http.send(res,0,"ok",{gameinfo: ret});
+		}
+		else{
+			http.send(res,0,"error",{gameinfo:"error"});
+		}
+	});
+});
+
 app.get('/create_room',function(req,res){
 	var userId = parseInt(req.query.userid);
 	var sign = req.query.sign;
@@ -67,7 +84,7 @@ app.get('/create_room',function(req,res){
 	}
 
 	conf = JSON.parse(conf);
-	roomMgr.createRoom(userId,conf,gems,serverIp,config.CLIENT_PORT,function(errcode,roomId){
+	roomMgr.createRoom(userId,conf,gems,serverIp,config.SOCKET_EXT_PORT,function(errcode,roomId){
 		if(errcode != 0 || roomId == null){
 			http.send(res,errcode,"create failed.");
 			return;	
@@ -148,7 +165,9 @@ function update(){
 	if(lastTickTime + config.HTTP_TICK_TIME < Date.now()){
 		lastTickTime = Date.now();
 		gameServerInfo.load = roomMgr.getTotalRooms();
-		http.get(config.HALL_IP,config.HALL_PORT,"/register_gs",gameServerInfo,function(ret,data){
+		
+		http.get(config.ROOM_INT_IP,config.ROOM_INT_PORT,"/register_gs",gameServerInfo,function(ret,data){
+		//http.get(config.ROOM_EXT_IP,config.ROOM_EXT_PORT,"/register_gs",gameServerInfo,function(ret,data){
 			if(ret == true){
 				if(data.errcode != 0){
 					console.log(data.errmsg);
@@ -178,13 +197,14 @@ exports.start = function($config){
 	//
 	gameServerInfo = {
 		id:config.SERVER_ID,
-		clientip:config.CLIENT_IP,
-		clientport:config.CLIENT_PORT,
-		httpPort:config.HTTP_PORT,
+		clientip:config.SOCKET_EXT_IP,
+		clientport:config.SOCKET_EXT_PORT,
+		httpIP:config.HTTP_EXT_IP,
+		httpPort:config.HTTP_EXT_PORT,
 		load:roomMgr.getTotalRooms(),
 	};
 
 	setInterval(update,1000);
-	app.listen(config.HTTP_PORT,config.FOR_HALL_IP);
-	console.log("game server is listening on " + config.FOR_HALL_IP + ":" + config.HTTP_PORT);
+	app.listen(config.HTTP_INT_PORT,config.HTTP_INT_IP);
+	console.log("game http server is listening on " + config.HTTP_INT_IP + ":" + config.HTTP_INT_PORT);
 };
