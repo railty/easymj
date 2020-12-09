@@ -1,26 +1,28 @@
+var HTTPS = false;
+
 var ACT_EXT_IP = 'act.game.com';
-var ACT_INT_IP = "192.168.86.200";
+var ACT_INT_IP = "localhost";
 var ACT_EXT_PORT = 9000;
 var ACT_INT_PORT = 8000;
 
 var CLIENT_EXT_IP = "hall.game.com";
-var CLIENT_INT_IP = "192.168.86.201";
+var CLIENT_INT_IP = "localhost";
 var CLIENT_EXT_PORT = 9001;
 var CLIENT_INT_PORT = 8001;
 
 var ROOM_EXT_IP = "hall.game.com";
-var ROOM_INT_IP = "192.168.86.201";
+var ROOM_INT_IP = "localhost";
 var ROOM_EXT_PORT = 9002;
 var ROOM_INT_PORT = 8002;
 
 var HTTP_EXT_IP = "web.game.com";
-var HTTP_INT_IP = "192.168.86.203";
+var HTTP_INT_IP = "localhost";
 var HTTP_EXT_PORT = 9003;
 var HTTP_INT_PORT = 8003;
 
-var SOCKET_EXT_IP = "web.game.com";
-var SOCKET_INT_IP = "192.168.86.203";
-var SOCKET_EXT_PORT = 9004;
+var SOCKET_EXT_IP = "localhost";
+var SOCKET_INT_IP = "localhost";
+var SOCKET_EXT_PORT = 8004;
 var SOCKET_INT_PORT = 8004;
 
 var ACCOUNT_PRI_KEY = "f865f224a12841fdf92a4d7ce2e94972";
@@ -30,7 +32,7 @@ var LOCAL_IP = 'localhost';
 
 exports.mysql = function(){
 	return {
-		HOST:'localhost',
+		HOST:'192.168.134.1',
 		USER:'fish',
 		PSWD:'fisher',
 		DB:'fish',
@@ -63,6 +65,7 @@ exports.account_server = function(){
 //大厅服配置
 exports.hall_server = function(){
 	return {
+		HTTPS: HTTPS,
 		CLIENT_EXT_IP:CLIENT_EXT_IP,
 		CLIENT_INT_IP:CLIENT_INT_IP,
 		CLIENT_EXT_PORT:CLIENT_EXT_PORT,
@@ -81,6 +84,7 @@ exports.hall_server = function(){
 	//游戏服配置
 exports.game_server = function(){
 	return {
+		HTTPS: HTTPS,
 		SERVER_ID:`${SOCKET_EXT_IP}:${SOCKET_EXT_PORT}`,
 
 		//暴露给大厅服的HTTP端口号

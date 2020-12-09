@@ -162,15 +162,15 @@ window.__require = function e(t, n, r) {
         var audioUrl = this.getUrl(url);
         console.log(audioUrl);
         this.bgmAudioID >= 0 && cc.audioEngine.stop(this.bgmAudioID);
-        this.bgmAudioID = cc.audioEngine.play({
-          type: cc.AudioClip,
-          default: null,
-          nativeUrl: "http://localhost:7456/" + audioUrl
-        }, true, this.bgmVolume);
+        cc.assetManager.loadRemote(audioUrl, function(err, clip) {
+          this.bgmAudioID = cc.audioEngine.play(clip, true, this.bgmVolume);
+        }.bind(this));
       },
       playSFX: function playSFX(url) {
         var audioUrl = this.getUrl(url);
-        if (this.sfxVolume > 0) var audioId = cc.audioEngine.play(audioUrl, false, this.sfxVolume);
+        this.sfxVolume > 0 && cc.assetManager.loadRemote(audioUrl, function(err, clip) {
+          var audioId = cc.audioEngine.play(clip, false, this.sfxVolume);
+        }.bind(this));
       },
       setSFXVolume: function setSFXVolume(v) {
         if (this.sfxVolume != v) {

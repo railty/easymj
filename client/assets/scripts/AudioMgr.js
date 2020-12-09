@@ -55,13 +55,18 @@ cc.Class({
         if(this.bgmAudioID >= 0){
             cc.audioEngine.stop(this.bgmAudioID);
         }
-        this.bgmAudioID = cc.audioEngine.play({type: cc.AudioClip, default:null, nativeUrl:"http://localhost:7456/"+audioUrl},true,this.bgmVolume);
+
+        cc.assetManager.loadRemote(audioUrl, function (err, clip) {
+            this.bgmAudioID = cc.audioEngine.play(clip, true, this.bgmVolume);
+        }.bind(this));
     },
     
     playSFX(url){
         var audioUrl = this.getUrl(url);
         if(this.sfxVolume > 0){
-            var audioId = cc.audioEngine.play(audioUrl,false,this.sfxVolume);    
+            cc.assetManager.loadRemote(audioUrl, function (err, clip) {
+                var audioId = cc.audioEngine.play(clip, false, this.sfxVolume);
+            }.bind(this));
         }
     },
     

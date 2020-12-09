@@ -1,7 +1,7 @@
 //process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 var db = require('./utils/db');
-var configs = require("./configs_local");
+var configs = require("./configs");
 db.init(configs.mysql());
 
 var configAccountServer = configs.account_server();

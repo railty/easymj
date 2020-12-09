@@ -106,7 +106,8 @@
         "cocos-services"
       ]
     },
-    "window-1607446228289": {}
+    "window-1607488394360": {},
+    "worker": {}
   },
   "panels": {
     "sprite-editor": {
