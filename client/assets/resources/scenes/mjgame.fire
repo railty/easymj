@@ -249,7 +249,7 @@
       "array": [
         0,
         0,
-        519.6152422706632,
+        527.4094709047232,
         0,
         0,
         0,
@@ -51071,7 +51071,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1066
@@ -51197,7 +51197,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1069
@@ -51412,7 +51412,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1074
@@ -51625,7 +51625,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 1079
@@ -70093,8 +70093,8 @@
     "target": {
       "__id__": 2
     },
-    "component": "GameOver",
-    "_componentId": "",
+    "component": "",
+    "_componentId": "facfdljnx5F+rFDAq5Qbmqa",
     "handler": "onBtnReadyClicked",
     "customEventData": ""
   },
@@ -104371,7 +104371,11 @@
       "__id__": 2198
     },
     "_enabled": true,
-    "_materials": [],
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
@@ -104430,7 +104434,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 484.17,
-      "height": 40
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -104474,7 +104478,11 @@
       "__id__": 2201
     },
     "_enabled": true,
-    "_materials": [],
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_string": "与服务器断开连接，正在重连...",
@@ -104512,9 +104520,7 @@
       "__id__": 2197
     },
     "_enabled": true,
-    "alignMode": 1,
-    "_wasAlignOnce": {},
-    "isAlignOnce": {},
+    "alignMode": 0,
     "_target": null,
     "_alignFlags": 45,
     "_left": 0,
@@ -105570,7 +105576,7 @@
         "__id__": 2248
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -106391,8 +106397,8 @@
     "target": {
       "__id__": 2
     },
-    "component": "GameOver",
-    "_componentId": "",
+    "component": "",
+    "_componentId": "facfdljnx5F+rFDAq5Qbmqa",
     "handler": "onBtnReadyClicked",
     "customEventData": ""
   },

@@ -14,13 +14,13 @@ function check_account(req,res){
 		http.send(res,1,"unknown error");
 		return false;
 	}
-	/*
+
 	var serverSign = crypto.md5(account + req.ip + config.ACCOUNT_PRI_KEY);
 	if(serverSign != sign){
 		http.send(res,2,"login failed.");
 		return false;
 	}
-	*/
+
 	return true;
 }
 //设置跨域访问
@@ -38,11 +38,6 @@ app.get('/login',function(req,res){
 		return;
 	}
 	
-	var ip = req.ip;
-	if(ip.indexOf("::ffff:") != -1){
-		ip = ip.substr(7);
-	}
-	
 	var account = req.query.account;
 	db.get_user_data(account,function(data){
 		if(data == null){
@@ -58,7 +53,7 @@ app.get('/login',function(req,res){
 			exp:data.exp,
 			coins:data.coins,
 			gems:data.gems,
-			ip:ip,
+			ip:req.ip,
 			sex:data.sex,
 		};
 

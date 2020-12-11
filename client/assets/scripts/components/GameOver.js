@@ -31,11 +31,6 @@ cc.Class({
         if(cc.vv.gameNetMgr.conf.type == "xzdd"){
             this._gameover = this.node.getChildByName("game_over");
         }
-        
-        // else{
-        //     this._gameover = this.node.getChildByName("game_over_xlch");
-        // }
-
         else if(cc.vv.gameNetMgr.conf.type == "xlch"){
             this._gameover = this.node.getChildByName("game_over_xlch");
         }
@@ -86,15 +81,11 @@ cc.Class({
         if(cc.vv.gameNetMgr.conf.type == "xzdd"){
             this.onGameOver_XZDD(data);
         }
-
-        // else{
-        //     this.onGameOver_XLCH(data);
-        // }
         else if(cc.vv.gameNetMgr.conf.type == "xlch"){
             this.onGameOver_XLCH(data);
         } 
         else{
-            this.onGameOver_XZDD(data);
+            this.onGameOver_RZMJ(data);
         }
     },
     
@@ -472,14 +463,16 @@ cc.Class({
                     actionArr.push("查大叫");
                 }
             }
-            
+            //shawn
+            /*
             for(var o = 0; o < 3;++o){
                 seatView.hu.children[o].active = false;    
             }
+
             if(userData.huorder >= 0){
                 seatView.hu.children[userData.huorder].active = true;    
             }
-
+            */
             seatView.username.string = cc.vv.gameNetMgr.seats[i].name;
             seatView.zhuang.active = cc.vv.gameNetMgr.button == i;
             seatView.reason.string = actionArr.join("、");
@@ -489,7 +482,8 @@ cc.Class({
             if(hued){
                 fan = userData.fan;
             }
-            seatView.fan.string = fan + "番";
+            //shawn
+            //seatView.fan.string = fan + "番";
             
             //
             if(userData.score > 0){

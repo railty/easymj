@@ -1,5 +1,5 @@
-//var URL = "https://act.nings.ca:9000";
-var URL = "https://act.game.com:9000";
+const configc = require("configc");
+const URL = configc.actUrl;
 
 cc.VERSION = 20161227;
 var HTTP = cc.Class({

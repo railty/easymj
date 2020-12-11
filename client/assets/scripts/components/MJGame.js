@@ -302,7 +302,9 @@ cc.Class({
             else{
                 self.initOtherMahjongs(seatData);
             }
-            
+
+            //no guafeng.mp3 nor rain.mp3
+            /*
             var localIndex = self.getLocalIndex(seatData.seatindex);
             if(gangtype == "wangang"){
                 self.playEfx(localIndex,"play_guafeng");
@@ -312,6 +314,7 @@ cc.Class({
                 self.playEfx(localIndex,"play_xiayu");
                 cc.vv.audioMgr.playSFX("rain.mp3");
             }
+            */
         });
         
         this.node.on("hangang_notify",function(data){

@@ -581,10 +581,10 @@ exports.get_room_data = function(roomId,callback){
             throw err;
         }
         if(rows.length > 0){
-            rows[0].user_name0 = crypto.fromBase64(rows[0].user_name0);
-            rows[0].user_name1 = crypto.fromBase64(rows[0].user_name1);
-            rows[0].user_name2 = crypto.fromBase64(rows[0].user_name2);
-            rows[0].user_name3 = crypto.fromBase64(rows[0].user_name3);
+            if (rows[0].user_name0) rows[0].user_name0 = crypto.fromBase64(rows[0].user_name0);
+            if (rows[0].user_name1) rows[0].user_name1 = crypto.fromBase64(rows[0].user_name1);
+            if (rows[0].user_name2) rows[0].user_name2 = crypto.fromBase64(rows[0].user_name2);
+            if (rows[0].user_name3) rows[0].user_name3 = crypto.fromBase64(rows[0].user_name3);                                    
             callback(rows[0]);
         }
         else{

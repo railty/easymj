@@ -106,9 +106,4 @@ cc.Class({
         //     this._mimaIndex = 0;
         // }
     }
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });

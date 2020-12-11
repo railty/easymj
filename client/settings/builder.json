@@ -25,7 +25,7 @@
   "webOrientation": "landscape",
   "mainCompressionType": "default",
   "mainIsRemote": false,
-  "md5Cache": true,
+  "md5Cache": false,
   "nativeMd5Cache": true,
   "encryptJs": true,
   "xxteaKey": "d580b3ad-8b45-48",
