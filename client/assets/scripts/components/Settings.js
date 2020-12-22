@@ -112,10 +112,18 @@ cc.Class({
             cc.vv.audioMgr.setBGMVolume(0);
             this.refreshVolume();
         }
+    },
+
+    onBtnFullScreen:function(event){    
+        console.log("full screen");
+
+        let fs = cc.screen['fullScreen']();
+
+        if (fs) cc.screen['exitFullScreen'](null, ()=>{
+            this.updateButtonFullScreen();
+        });
+        else cc.screen['requestFullScreen'](null, ()=>{
+            this.updateButtonFullScreen();
+        });
     }
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });
