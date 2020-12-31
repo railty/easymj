@@ -1,8 +1,8 @@
 {
-  "platform": "web-mobile",
-  "actualPlatform": "web-mobile",
+  "platform": "ios",
+  "actualPlatform": "ios",
   "template": "link",
-  "buildPath": "C:\\Sites\\easymj\\public",
+  "buildPath": "/Users/sning/easymj/public",
   "debug": true,
   "sourceMaps": true,
   "embedWebDebugger": true,

@@ -37,7 +37,7 @@
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",
-    "packageName": "org.cocos2d.demo"
+    "packageName": "ios.easymj.games"
   },
   "mac": {
     "REMOTE_SERVER_ROOT": "",
