@@ -210,8 +210,8 @@
     "relativePath": "resources\\scenes\\createrole.fire"
   },
   "efb1084f-0b5a-4980-b187-1e949555cb55": {
-    "asset": 1608599618210,
-    "meta": 1609612216543,
+    "asset": 1609616659102,
+    "meta": 1609616659147,
     "relativePath": "resources\\scenes\\hall.fire"
   },
   "4a1acad9-ce88-4334-aa62-bf23a5ccc79e": {
@@ -2788,5 +2788,15 @@
     "asset": 1609612826362,
     "meta": 1609612836700,
     "relativePath": "scripts\\components\\CreateRole.js"
+  },
+  "e3dfe68d-56b5-41d9-ad4a-1325ef22b330": {
+    "asset": 1609615164894,
+    "meta": 1609615164896,
+    "relativePath": "fonts"
+  },
+  "f92906bc-3e13-4dc8-82b3-43c75b6905f8": {
+    "asset": 1609615187683,
+    "meta": 1609615187719,
+    "relativePath": "fonts\\PermanentMarker-Regular.ttf"
   }
 }
