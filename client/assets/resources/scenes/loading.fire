@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        527.4094709047232,
+        427.8165494695127,
         0,
         0,
         0,
@@ -267,7 +267,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
+      "width": 1080,
       "height": 720
     },
     "_anchorPoint": {
@@ -354,14 +354,14 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 200,
-      "b": 0,
+      "r": 48,
+      "g": 41,
+      "b": 18,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 215.96,
+      "width": 231.38,
       "height": 44.1
     },
     "_anchorPoint": {
@@ -422,7 +422,7 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_batchAsBitmap": false,
-    "_styleFlags": 0,
+    "_styleFlags": 1,
     "_underlineHeight": 0,
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
@@ -877,8 +877,8 @@
     "target": {
       "__id__": 7
     },
-    "component": "LoadingLogic",
-    "_componentId": "",
+    "component": "",
+    "_componentId": "350d3Ry9aVIqJR27fP2H/z1",
     "handler": "onBtnDownloadClicked",
     "customEventData": ""
   },
