@@ -5,6 +5,8 @@ server/package.json
 server/package-lock.json
 server/configs.js
 server/node_modules
+client/build
+client/library 
+client/local
 client/temp
-client/library/imports
 
