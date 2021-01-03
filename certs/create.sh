@@ -1,4 +1,4 @@
-NAME=act.game.com
+NAME=list4d.ca
 # Generate a private key
 openssl genrsa -out $NAME.key 2048
 # Create a certificate-signing request
