@@ -41,35 +41,8 @@ function getMJType(id){
         return 4;
     }
 }
-
-function shuffle(game) {
-
+function shuffle_test(game) {
     var mahjongs = game.mahjongs;
-
-    /*
-     var idx = 0;
-     for(var i = 0; i < 12; ++i){
-     game.mahjongs[idx++] = 0;
-     }
-
-     for(var i = 0; i < 12; ++i){
-     game.mahjongs[idx++] = 1;
-     }
-
-     for(var i = 0; i < 12; ++i){
-     game.mahjongs[idx++] = 2;
-     }
-
-     for(var i = 0; i < 12; ++i){
-     game.mahjongs[idx++] = 3;
-     }
-
-
-     for(var i = idx; i < game.mahjongs.length; ++i){
-     game.mahjongs[i] = 4;
-     }
-     return;
-     */
 
     //筒 (0 ~ 8 表示筒子
     var index = 0;
@@ -96,6 +69,60 @@ function shuffle(game) {
             index++;
         }
     }
+
+    mahjongs[0] = 0;
+    mahjongs[1] = 9;
+    mahjongs[2] = 18;
+    mahjongs[3] = 5;
+    mahjongs[4] = 0;
+    mahjongs[5] = 9;
+    mahjongs[6] = 18;
+    mahjongs[7] = 5;
+    mahjongs[8] = 0;
+    mahjongs[9] = 9;
+    mahjongs[10] = 18;
+    mahjongs[11] = 5;
+    mahjongs[12] = 1;
+    mahjongs[13] = 10;
+    mahjongs[14] = 19;
+    mahjongs[15] = 6;
+    mahjongs[16] = 1;
+    mahjongs[17] = 10;
+    mahjongs[18] = 19;
+    mahjongs[19] = 6;
+
+}
+
+function shuffle(game) {
+
+    var mahjongs = game.mahjongs;
+
+    //筒 (0 ~ 8 表示筒子
+    var index = 0;
+    for(var i = 0; i < 9; ++i){
+        for(var c = 0; c < 4; ++c){
+            mahjongs[index] = i;
+            index++;
+        }
+    }
+
+    //条 9 ~ 17表示条子
+    for(var i = 9; i < 18; ++i){
+        for(var c = 0; c < 4; ++c){
+            mahjongs[index] = i;
+            index++;
+        }
+    }
+
+    //万
+    //条 18 ~ 26表示万
+    for(var i = 18; i < 27; ++i){
+        for(var c = 0; c < 4; ++c){
+            mahjongs[index] = i;
+            index++;
+        }
+    }
+
     //中发白这里
     for(var i = 27; i < 30; ++i){
         for(var c = 0; c < 4; ++c){
@@ -103,6 +130,7 @@ function shuffle(game) {
             index++;
         }
     }
+    
     //这里是东南西北
     for(var i = 30; i < 34; ++i){
         for(var c = 0; c < 4; ++c){
@@ -110,6 +138,7 @@ function shuffle(game) {
             index++;
         }
     }
+
    //这里是洗牌
     for(var i = 0; i < mahjongs.length; ++i){
         var lastIndex = mahjongs.length - 1 - i;
@@ -140,6 +169,56 @@ function mopai(game,seatIndex) {
 }
 
 function deal(game){
+    deal13(game);
+}
+
+function deal4(game){
+    //强制清0
+    game.currentIndex = 0;
+
+    //每人4张 一共 4*4 ＝ 16张 庄家多一张 17张
+    var seatIndex = game.button;
+    for(var i = 0; i < 16; ++i){
+        var mahjongs = game.gameSeats[seatIndex].holds;
+        if(mahjongs == null){
+            mahjongs = [];
+            game.gameSeats[seatIndex].holds = mahjongs;
+        }
+        mopai(game,seatIndex);
+        seatIndex ++;
+        seatIndex %= 4;
+    }
+
+    //庄家多摸最后一张
+    mopai(game,game.button);
+    //当前轮设置为庄家
+    game.turn = game.button;
+}
+
+function deal7(game){
+    //强制清0
+    game.currentIndex = 0;
+
+    //每人7张 一共 7*4 ＝ 28张 庄家多一张 29张
+    var seatIndex = game.button;
+    for(var i = 0; i < 28; ++i){
+        var mahjongs = game.gameSeats[seatIndex].holds;
+        if(mahjongs == null){
+            mahjongs = [];
+            game.gameSeats[seatIndex].holds = mahjongs;
+        }
+        mopai(game,seatIndex);
+        seatIndex ++;
+        seatIndex %= 4;
+    }
+
+    //庄家多摸最后一张
+    mopai(game,game.button);
+    //当前轮设置为庄家
+    game.turn = game.button;
+}
+
+function deal13(game){
     //强制清0
     game.currentIndex = 0;
 
@@ -1211,6 +1290,7 @@ exports.begin = function(roomId) {
 
         button:roomInfo.nextButton,
         mahjongs:new Array(136),
+        //mahjongs:new Array(9*4*3),//no zi pai shawn
         currentIndex:0,
         gameSeats:new Array(4),
 

@@ -21,11 +21,11 @@
   "privateKey": "",
   "renderMode": "0",
   "startScene": "4a1acad9-ce88-4334-aa62-bf23a5ccc79e",
-  "title": "DDMJw",
+  "title": "easymj",
   "webOrientation": "landscape",
   "mainCompressionType": "default",
   "mainIsRemote": false,
-  "md5Cache": true,
+  "md5Cache": false,
   "nativeMd5Cache": true,
   "encryptJs": true,
   "xxteaKey": "d580b3ad-8b45-48",
@@ -37,7 +37,7 @@
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",
-    "packageName": "org.cocos2d.demo"
+    "packageName": "ios.easymj.games"
   },
   "mac": {
     "REMOTE_SERVER_ROOT": "",

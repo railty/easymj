@@ -137,6 +137,14 @@ cc.Class({
         else if(id >= 18 && id < 27){
             realId = id - 7;
         }
+        else if(id == 27) realId = 71;        //中
+        else if(id == 28) realId = 81;        //发
+        else if(id == 29) realId = 91;        //白
+        else if(id == 30) realId = 31;        //东
+        else if(id == 31) realId = 41;        //西
+        else if(id == 32) realId = 51;        //南
+        else if(id == 33) realId = 61;        //北
+   
         return "nv/" + realId + ".mp3";
     },
     

@@ -2,17 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
-        bgmVolume:1.0,
+        bgmVolume:0.01,
         sfxVolume:1.0,
         
         bgmAudioID:-1,
@@ -46,23 +36,36 @@ cc.Class({
     // },
     
     getUrl:function(url){
-        return cc.url.raw("resources/sounds/" + url);
+        //return cc.url.raw("resources/sounds/" + url);
+
+        return cc.assetManager._transform({
+            'path': cc.path.changeExtname("/sounds/" + url), 
+            bundle: cc.AssetManager.BuiltinBundleName.RESOURCES, 
+            __isNative__: true, 
+            ext: ".mp3"
+        });
     },
     
     playBGM(url){
-        var audioUrl = this.getUrl(url);
-        console.log(audioUrl);
         if(this.bgmAudioID >= 0){
             cc.audioEngine.stop(this.bgmAudioID);
         }
 
+        var audioUrl = this.getUrl(url);
+        //console.log(audioUrl);
+
         cc.assetManager.loadRemote(audioUrl, function (err, clip) {
+            console.log(err);
             this.bgmAudioID = cc.audioEngine.play(clip, true, this.bgmVolume);
         }.bind(this));
     },
     
     playSFX(url){
         var audioUrl = this.getUrl(url);
+        if (!audioUrl){
+            //debug only show 
+            console.error(url + "not found");
+        }
         if(this.sfxVolume > 0){
             cc.assetManager.loadRemote(audioUrl, function (err, clip) {
                 var audioId = cc.audioEngine.play(clip, false, this.sfxVolume);

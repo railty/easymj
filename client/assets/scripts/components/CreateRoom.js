@@ -161,14 +161,14 @@ cc.Class({
         if(type == 0){
             type = "xzdd";
         }
-        // else {
-        //     type = "xlch";
-        // }
         else if(type == 1){
             type = "xlch";
         }
-        else {
+        else if(type == 2){
             type = "rzmj";
+        }
+        else {
+            type = "test";
         }
         //最大翻数
         var zuidafanshu = 0;
@@ -201,11 +201,12 @@ cc.Class({
             var conf = {
             type:type,
             difen:difen,
+            jushuxuanze:jushuxuanze,
+            zuidafanshu:zuidafanshu,
+            
             zimo:zimo,
             jiangdui:jiangdui,
             huansanzhang:huansanzhang,
-            zuidafanshu:zuidafanshu,
-            jushuxuanze:jushuxuanze,
             dianganghua:dianganghua,
             menqing:menqing,
             tiandihu:tiandihu,   
@@ -217,6 +218,13 @@ cc.Class({
                 difen:difen,            
                 jushuxuanze:jushuxuanze,
                 zuidafanshu:zuidafanshu,
+//add by shawn
+                zimo:zimo,
+                jiangdui:jiangdui,
+                huansanzhang:huansanzhang,
+                dianganghua:dianganghua,
+                menqing:menqing,
+                tiandihu:tiandihu,   
             };
         }
        

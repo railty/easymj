@@ -1,3 +1,6 @@
+const configc = require("configc");
+const https = configc.https; 
+
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -20,7 +23,7 @@ cc.Class({
         var account = cc.args["account"];
         if(account == null){
             //remove this line will force browser alway start with a new account, for debug
-            //account = cc.sys.localStorage.getItem("account");
+            account = cc.sys.localStorage.getItem("account");
         }
         
         if(account == null){
@@ -39,9 +42,8 @@ cc.Class({
         else{
             self.account = ret.account;
             self.sign = ret.sign;
-            cc.vv.http.url = "https://" + cc.vv.SI.hall;
-            //cc.vv.http.url = "http://" + cc.vv.SI.hall;
-            //shawn use https
+            if (https) cc.vv.http.url = "https://" + cc.vv.SI.hall;
+            else cc.vv.http.url = "http://" + cc.vv.SI.hall;
             self.login();
         }   
     },

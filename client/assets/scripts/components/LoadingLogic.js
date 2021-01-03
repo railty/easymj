@@ -1,4 +1,6 @@
-//咋这个编译器中黄色代表函数（方法），蓝色代表变量和方法名，就是标识符，深蓝就是代表关键字
+const configc = require("configc");
+const texts = configc.texts; 
+
 cc.Class({
     extends: cc.Component,
 
@@ -194,7 +196,7 @@ cc.Class({
     },
     
     startPreloading:function(){
-        this._stateStr = "正在加载资源，请稍候";
+        this._stateStr = texts.loading;
         this._isLoading = true;
         var self = this;
         //重写onProgress函数

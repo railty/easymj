@@ -1,4 +1,6 @@
-//拿到这两文件
+const configc = require("configc");
+const texts = configc.texts; 
+
 var Net = require("Net")
 var Global = require("Global")
 cc.Class({
@@ -86,14 +88,14 @@ cc.Class({
         if(!cc.vv.userMgr.notice){
             cc.vv.userMgr.notice = {
                 version:null,
-                msg:"数据请求中...",
+                msg: texts.requesting,
             }
         }
         
         if(!cc.vv.userMgr.gemstip){
             cc.vv.userMgr.gemstip = {
                 version:null,
-                msg:"数据请求中...",
+                msg: texts.requesting,
             }
         }
         

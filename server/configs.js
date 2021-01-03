@@ -1,4 +1,4 @@
-var HTTPS = true;
+var HTTPS = false;
 
 var ACT_EXT_IP = 'act.game.com';
 var ACT_INT_IP = "localhost";
@@ -17,12 +17,12 @@ var ROOM_INT_PORT = 8002;
 
 var HTTP_EXT_IP = "web.game.com";
 var HTTP_INT_IP = "localhost";
-var HTTP_EXT_PORT = 443;
+var HTTP_EXT_PORT = 9003;
 var HTTP_INT_PORT = 8003;
 
-var SOCKET_EXT_IP = "web.game.com";
+var SOCKET_EXT_IP = "localhost";
 var SOCKET_INT_IP = "localhost";
-var SOCKET_EXT_PORT = 9004;
+var SOCKET_EXT_PORT = 8004;
 var SOCKET_INT_PORT = 8004;
 
 var ACCOUNT_PRI_KEY = "f865f224a12841fdf92a4d7ce2e94972";
@@ -30,9 +30,6 @@ var ROOM_PRI_KEY = "10e8b80ad70aade16c8c6c5a53eac167";
 
 var LOCAL_IP = 'localhost';
 
-//CREATE USER 'fish'@'DESKTOP-SOB567H' IDENTIFIED with mysql_native_password BY 'fisher';
-//GRANT ALL PRIVILEGES ON fish.* TO 'fish'@'DESKTOP-SOB567H' WITH GRANT OPTION;
-//FLUSH PRIVILEGES;
 exports.mysql = function(){
 	return {
 		HOST:'192.168.134.1',

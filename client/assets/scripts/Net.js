@@ -1,3 +1,6 @@
+const configc = require("configc");
+const https = configc.https; 
+
 if(window.io == null){
     window.io = require("socket-io");
 }
@@ -40,7 +43,10 @@ var Global = cc.Class({
                 'force new connection': true,
                 'transports':['websocket', 'polling']
             }
-            this.sio = window.io.connect("https://"+this.ip,opts);
+
+            if (https) this.sio = window.io.connect("https://"+this.ip,opts);
+            else this.sio = window.io.connect("http://"+this.ip,opts);
+
             this.sio.on('reconnect',function(){
                 console.log('reconnection');
             });
