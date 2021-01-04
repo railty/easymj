@@ -1710,83 +1710,83 @@ var app = (function () {
     			attr_dev(img, "class", "h-16 w-16");
     			if (img.src !== (img_src_value = "/css/logo.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "fa");
-    			add_location(img, file, 22, 5, 457);
+    			add_location(img, file, 21, 5, 455);
     			attr_dev(div0, "class", "flex-shrink-0");
-    			add_location(div0, file, 21, 3, 424);
+    			add_location(div0, file, 20, 3, 422);
     			attr_dev(a0, "href", "#/home");
     			attr_dev(a0, "class", "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium");
-    			add_location(a0, file, 27, 4, 720);
+    			add_location(a0, file, 26, 4, 718);
     			attr_dev(a1, "href", "/privacy.html");
     			attr_dev(a1, "class", "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium");
-    			add_location(a1, file, 28, 6, 855);
+    			add_location(a1, file, 27, 6, 853);
     			attr_dev(a2, "href", "#/contact");
     			attr_dev(a2, "class", "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium");
-    			add_location(a2, file, 29, 6, 1002);
+    			add_location(a2, file, 28, 6, 1000);
     			attr_dev(div1, "class", "ml-10 flex items-baseline space-x-4");
-    			add_location(div1, file, 25, 5, 558);
+    			add_location(div1, file, 24, 5, 556);
     			attr_dev(div2, "class", "hidden md:block");
-    			add_location(div2, file, 24, 3, 523);
+    			add_location(div2, file, 23, 3, 521);
     			attr_dev(div3, "class", "flex items-center");
-    			add_location(div3, file, 20, 4, 389);
+    			add_location(div3, file, 19, 4, 387);
     			attr_dev(span, "class", "sr-only");
-    			add_location(span, file, 36, 5, 1534);
+    			add_location(span, file, 35, 5, 1532);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M4 6h16M4 12h16M4 18h16");
-    			add_location(path0, file, 43, 4, 1841);
+    			add_location(path0, file, 42, 4, 1839);
     			attr_dev(svg0, "class", svg0_class_value = "" + ((/*menuOpen*/ ctx[1] ? "hidden" : "block") + " h-6 w-6"));
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
     			attr_dev(svg0, "aria-hidden", "true");
-    			add_location(svg0, file, 42, 5, 1675);
+    			add_location(svg0, file, 41, 5, 1673);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M6 18L18 6M6 6l12 12");
-    			add_location(path1, file, 51, 4, 2214);
+    			add_location(path1, file, 50, 4, 2212);
     			attr_dev(svg1, "class", svg1_class_value = "" + ((/*menuOpen*/ ctx[1] ? "block" : "hidden") + " h-6 w-6"));
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
     			attr_dev(svg1, "aria-hidden", "true");
-    			add_location(svg1, file, 50, 5, 2048);
+    			add_location(svg1, file, 49, 5, 2046);
     			attr_dev(button, "class", "bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white");
-    			add_location(button, file, 35, 3, 1280);
+    			add_location(button, file, 34, 3, 1278);
     			attr_dev(div4, "class", "-mr-2 flex md:hidden");
-    			add_location(div4, file, 33, 4, 1211);
+    			add_location(div4, file, 32, 4, 1209);
     			attr_dev(div5, "class", "flex items-center justify-between h-16");
-    			add_location(div5, file, 19, 2, 332);
+    			add_location(div5, file, 18, 2, 330);
     			attr_dev(div6, "class", "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8");
-    			add_location(div6, file, 18, 3, 277);
+    			add_location(div6, file, 17, 3, 275);
     			attr_dev(a3, "href", "#/home");
     			attr_dev(a3, "class", "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium");
-    			add_location(a3, file, 66, 4, 2692);
+    			add_location(a3, file, 65, 4, 2690);
     			attr_dev(a4, "href", "/privacy.html");
     			attr_dev(a4, "class", "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium");
-    			add_location(a4, file, 67, 4, 2833);
+    			add_location(a4, file, 66, 4, 2831);
     			attr_dev(a5, "href", "#/contact");
     			attr_dev(a5, "class", "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium");
-    			add_location(a5, file, 68, 4, 2986);
+    			add_location(a5, file, 67, 4, 2984);
     			attr_dev(div7, "class", "px-2 pt-2 pb-3 space-y-1 sm:px-3");
-    			add_location(div7, file, 64, 2, 2533);
+    			add_location(div7, file, 63, 2, 2531);
     			attr_dev(div8, "class", div8_class_value = "" + ((/*menuOpen*/ ctx[1] ? "block" : "hidden") + " md:hidden"));
-    			add_location(div8, file, 63, 3, 2476);
+    			add_location(div8, file, 62, 3, 2474);
     			attr_dev(nav, "class", "bg-gray-800");
-    			add_location(nav, file, 17, 1, 248);
+    			add_location(nav, file, 16, 1, 246);
     			attr_dev(h1, "class", "text-3xl font-bold leading-tight text-gray-900");
-    			add_location(h1, file, 75, 2, 3291);
+    			add_location(h1, file, 74, 2, 3289);
     			attr_dev(div9, "class", "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8");
-    			add_location(div9, file, 74, 3, 3231);
+    			add_location(div9, file, 73, 3, 3229);
     			attr_dev(header, "class", "bg-white shadow");
-    			add_location(header, file, 73, 1, 3195);
+    			add_location(header, file, 72, 1, 3193);
     			attr_dev(div10, "class", "max-w-7xl mx-auto py-6 sm:px-6 lg:px-8");
-    			add_location(div10, file, 81, 3, 3410);
-    			add_location(main, file, 80, 1, 3400);
-    			add_location(div11, file, 16, 0, 241);
+    			add_location(div10, file, 80, 3, 3408);
+    			add_location(main, file, 79, 1, 3398);
+    			add_location(div11, file, 15, 0, 239);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2004,7 +2004,7 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$1 = "src\\components\\home.svelte";
 
-    // (11:0) <Menu>
+    // (11:0) <Menu selectedMenu='Home'>
     function create_default_slot(ctx) {
     	let h10;
     	let a0;
@@ -2032,19 +2032,19 @@ var app = (function () {
     			attr_dev(img0, "class", "w-32");
     			if (img0.src !== (img0_src_value = "css/appstore.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "Download from Apple App Store");
-    			add_location(img0, file$1, 13, 3, 288);
+    			add_location(img0, file$1, 13, 3, 308);
     			attr_dev(a0, "href", "https://apps.apple.com/app/checkers/id1070255846");
-    			add_location(a0, file$1, 12, 2, 225);
+    			add_location(a0, file$1, 12, 2, 245);
     			attr_dev(h10, "class", "p-4 text-lg font-bold text-blue-600 hover:text-blue-300");
-    			add_location(h10, file$1, 11, 1, 154);
+    			add_location(h10, file$1, 11, 1, 174);
     			attr_dev(img1, "class", "bg-black rounded-md p-3 w-32");
     			if (img1.src !== (img1_src_value = "css/browser.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "Play in browser");
-    			add_location(img1, file$1, 19, 3, 512);
+    			add_location(img1, file$1, 19, 3, 532);
     			attr_dev(a1, "href", "web-mobile");
-    			add_location(a1, file$1, 18, 2, 487);
+    			add_location(a1, file$1, 18, 2, 507);
     			attr_dev(h11, "class", "p-4 text-lg font-bold text-blue-600 hover:text-blue-300");
-    			add_location(h11, file$1, 17, 1, 416);
+    			add_location(h11, file$1, 17, 1, 436);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h10, anchor);
@@ -2068,7 +2068,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(11:0) <Menu>",
+    		source: "(11:0) <Menu selectedMenu='Home'>",
     		ctx
     	});
 
@@ -2081,6 +2081,7 @@ var app = (function () {
 
     	menu = new Menu({
     			props: {
+    				selectedMenu: "Home",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -2243,40 +2244,40 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Submit";
     			attr_dev(div0, "class", "text-3xl mb-6 text-center ");
-    			add_location(div0, file$2, 58, 8, 1883);
+    			add_location(div0, file$2, 58, 8, 1909);
     			attr_dev(input0, "type", "text");
     			input0.required = true;
     			attr_dev(input0, "class", "rounded-md border-solid border-blue-400 border-2 p-3 md:text-xl w-full");
     			attr_dev(input0, "placeholder", "Name");
-    			add_location(input0, file$2, 64, 16, 2156);
+    			add_location(input0, file$2, 64, 16, 2182);
     			attr_dev(div1, "class", "col-span-2 lg:col-span-1");
-    			add_location(div1, file$2, 63, 12, 2101);
+    			add_location(div1, file$2, 63, 12, 2127);
     			attr_dev(input1, "type", "email");
     			input1.required = true;
     			attr_dev(input1, "class", "rounded-md border-solid border-blue-400 border-2 p-3 md:text-xl w-full");
     			attr_dev(input1, "placeholder", "Email Address");
-    			add_location(input1, file$2, 68, 16, 2397);
+    			add_location(input1, file$2, 68, 16, 2423);
     			attr_dev(div2, "class", "col-span-2 lg:col-span-1");
-    			add_location(div2, file$2, 67, 12, 2342);
+    			add_location(div2, file$2, 67, 12, 2368);
     			textarea.required = true;
     			attr_dev(textarea, "cols", "30");
     			attr_dev(textarea, "rows", "8");
     			attr_dev(textarea, "maxlength", "1000");
     			attr_dev(textarea, "class", "rounded-md border-solid border-blue-400 border-2 p-3 md:text-xl w-full");
     			attr_dev(textarea, "placeholder", "Message");
-    			add_location(textarea, file$2, 72, 16, 2635);
+    			add_location(textarea, file$2, 72, 16, 2661);
     			attr_dev(div3, "class", "col-span-2");
-    			add_location(div3, file$2, 71, 12, 2594);
+    			add_location(div3, file$2, 71, 12, 2620);
     			attr_dev(button, "type", "submit");
     			attr_dev(button, "class", "rounded-md py-3 px-6 bg-green-500 text-white font-bold w-full sm:w-32");
-    			add_location(button, file$2, 76, 16, 2916);
+    			add_location(button, file$2, 76, 16, 2942);
     			attr_dev(div4, "class", "col-span-2 text-right");
-    			add_location(div4, file$2, 75, 12, 2864);
+    			add_location(div4, file$2, 75, 12, 2890);
     			attr_dev(div5, "class", "grid grid-cols-2 gap-4 max-w-xl m-auto");
-    			add_location(div5, file$2, 62, 8, 2036);
-    			add_location(form, file$2, 61, 8, 1985);
+    			add_location(div5, file$2, 62, 8, 2062);
+    			add_location(form, file$2, 61, 8, 2011);
     			attr_dev(div6, "class", "max-w-2xl bg-white py-10 px-5 m-auto w-full mt-10");
-    			add_location(div6, file$2, 56, 4, 1810);
+    			add_location(div6, file$2, 56, 4, 1836);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div6, anchor);
@@ -2392,21 +2393,21 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Reset";
     			attr_dev(div0, "class", "text-md mb-6");
-    			add_location(div0, file$2, 23, 8, 521);
+    			add_location(div0, file$2, 23, 8, 547);
     			input0.disabled = true;
     			input0.value = input0_value_value = /*resp*/ ctx[3].name;
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "class", "bg-gray-300 rounded-md p-3 md:text-xl w-full");
-    			add_location(input0, file$2, 37, 16, 969);
+    			add_location(input0, file$2, 37, 16, 995);
     			attr_dev(div1, "class", "col-span-2 lg:col-span-1");
-    			add_location(div1, file$2, 36, 12, 914);
+    			add_location(div1, file$2, 36, 12, 940);
     			input1.disabled = true;
     			input1.value = input1_value_value = /*resp*/ ctx[3].email;
     			attr_dev(input1, "type", "email");
     			attr_dev(input1, "class", "bg-gray-300 rounded-md p-3 md:text-xl w-full");
-    			add_location(input1, file$2, 41, 16, 1166);
+    			add_location(input1, file$2, 41, 16, 1192);
     			attr_dev(div2, "class", "col-span-2 lg:col-span-1");
-    			add_location(div2, file$2, 40, 12, 1111);
+    			add_location(div2, file$2, 40, 12, 1137);
     			textarea.disabled = true;
     			textarea.value = textarea_value_value = /*resp*/ ctx[3].message;
     			attr_dev(textarea, "cols", "30");
@@ -2414,17 +2415,17 @@ var app = (function () {
     			attr_dev(textarea, "maxlength", "1000");
     			attr_dev(textarea, "class", "bg-gray-300 rounded-md p-3 md:text-xl w-full");
     			attr_dev(textarea, "placeholder", "Message");
-    			add_location(textarea, file$2, 45, 16, 1350);
+    			add_location(textarea, file$2, 45, 16, 1376);
     			attr_dev(div3, "class", "col-span-2");
-    			add_location(div3, file$2, 44, 12, 1309);
+    			add_location(div3, file$2, 44, 12, 1335);
     			attr_dev(button, "class", "rounded-md py-3 px-6 bg-green-500 text-white font-bold w-full sm:w-32");
-    			add_location(button, file$2, 48, 16, 1596);
+    			add_location(button, file$2, 48, 16, 1622);
     			attr_dev(div4, "class", "col-span-2 text-right");
-    			add_location(div4, file$2, 47, 12, 1544);
+    			add_location(div4, file$2, 47, 12, 1570);
     			attr_dev(div5, "class", "grid grid-cols-2 gap-4 max-w-xl m-auto");
-    			add_location(div5, file$2, 35, 8, 849);
+    			add_location(div5, file$2, 35, 8, 875);
     			attr_dev(div6, "class", "max-w-2xl bg-white py-10 px-5 m-auto w-full mt-10");
-    			add_location(div6, file$2, 21, 4, 448);
+    			add_location(div6, file$2, 21, 4, 474);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div6, anchor);
@@ -2502,7 +2503,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "text-md mb-6");
-    			add_location(div, file$2, 29, 16, 719);
+    			add_location(div, file$2, 29, 16, 745);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2535,7 +2536,7 @@ var app = (function () {
     		c: function create() {
     			ul = element("ul");
     			attr_dev(ul, "class", "list-disc");
-    			add_location(ul, file$2, 25, 16, 600);
+    			add_location(ul, file$2, 25, 16, 626);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -2559,7 +2560,7 @@ var app = (function () {
     	return block;
     }
 
-    // (20:0) <Menu>
+    // (20:0) <Menu selectedMenu='Contact Us'>
     function create_default_slot$1(ctx) {
     	let if_block_anchor;
 
@@ -2603,7 +2604,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(20:0) <Menu>",
+    		source: "(20:0) <Menu selectedMenu='Contact Us'>",
     		ctx
     	});
 
@@ -2616,6 +2617,7 @@ var app = (function () {
 
     	menu = new Menu({
     			props: {
+    				selectedMenu: "Contact Us",
     				$$slots: { default: [create_default_slot$1] },
     				$$scope: { ctx }
     			},
