@@ -2008,34 +2008,54 @@ var app = (function () {
     function create_default_slot(ctx) {
     	let h10;
     	let a0;
+    	let img0;
+    	let img0_src_value;
+    	let t0;
     	let t1;
     	let h11;
     	let a1;
+    	let img1;
+    	let img1_src_value;
+    	let t2;
 
     	const block = {
     		c: function create() {
     			h10 = element("h1");
     			a0 = element("a");
-    			a0.textContent = "Download from Apple App Store";
+    			img0 = element("img");
+    			t0 = text("\n\t\t\tDownload from Apple App Store");
     			t1 = space();
     			h11 = element("h1");
     			a1 = element("a");
-    			a1.textContent = "Play in browser";
-    			attr_dev(a0, "href", "web-mobile");
-    			add_location(a0, file$1, 11, 69, 222);
+    			img1 = element("img");
+    			t2 = text("\n\t\t\tPlay in browser");
+    			attr_dev(img0, "class", "w-32");
+    			if (img0.src !== (img0_src_value = "css/appstore.png")) attr_dev(img0, "src", img0_src_value);
+    			attr_dev(img0, "alt", "Download from Apple App Store");
+    			add_location(img0, file$1, 13, 3, 288);
+    			attr_dev(a0, "href", "https://apps.apple.com/app/checkers/id1070255846");
+    			add_location(a0, file$1, 12, 2, 225);
     			attr_dev(h10, "class", "p-4 text-lg font-bold text-blue-600 hover:text-blue-300");
     			add_location(h10, file$1, 11, 1, 154);
+    			attr_dev(img1, "class", "bg-black rounded-md p-3 w-32");
+    			if (img1.src !== (img1_src_value = "css/browser.png")) attr_dev(img1, "src", img1_src_value);
+    			attr_dev(img1, "alt", "Play in browser");
+    			add_location(img1, file$1, 19, 3, 512);
     			attr_dev(a1, "href", "web-mobile");
-    			add_location(a1, file$1, 12, 69, 351);
+    			add_location(a1, file$1, 18, 2, 487);
     			attr_dev(h11, "class", "p-4 text-lg font-bold text-blue-600 hover:text-blue-300");
-    			add_location(h11, file$1, 12, 1, 283);
+    			add_location(h11, file$1, 17, 1, 416);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h10, anchor);
     			append_dev(h10, a0);
+    			append_dev(a0, img0);
+    			append_dev(a0, t0);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, h11, anchor);
     			append_dev(h11, a1);
+    			append_dev(a1, img1);
+    			append_dev(a1, t2);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(h10);
