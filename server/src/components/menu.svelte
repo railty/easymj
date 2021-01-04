@@ -12,7 +12,6 @@
 	}
 	let menuOpen = false;
 	export let selectedMenu = 'Home';
-
 </script>
 
 <div>
@@ -26,9 +25,9 @@
 			<div class="hidden md:block">
 			  <div class="ml-10 flex items-baseline space-x-4">
 				<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-				<a on:click={()=>{click('Home')}} href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+				<a on:click={()=>{click('Home')}} href="#/home" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
   				<a href="/privacy.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Privacy Policy</a>
-  				<a on:click={()=>{click('Contact US')}} href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact US</a>
+  				<a on:click={()=>{click('Contact US')}} href="#/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact US</a>
   			  </div>
 			</div>
 		  </div>
@@ -65,9 +64,9 @@
 	  <div class="{menuOpen ? 'block': 'hidden'} md:hidden">
 		<div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
 		  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-		  <a on:click={()=>{click('Home')}} href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+		  <a on:click={()=>{click('Home')}} href="#/home" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
 		  <a href="/privacy.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Privacy Policy</a>
-		  <a on:click={()=>{click('Contact US')}} href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
+		  <a on:click={()=>{click('Contact US')}} href="#/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
 		</div>
 	  </div>
 	</nav>
@@ -85,9 +84,3 @@
 	  </div>
 	</main>
 </div>
-
-<style type="text/scss">
-	* {
-		box-sizing: border-box;
-	}
-</style>

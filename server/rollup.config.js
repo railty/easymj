@@ -7,7 +7,7 @@ import autoPreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default ['home', 'cli'].map((name, index) => ({
+export default ['starter', 'cli'].map((name, index) => ({
 	input: `src/${name}/main.js`,
 	//external: ['socket.io-client'],
 	output: {

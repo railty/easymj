@@ -1,5 +1,6 @@
 <script>
     import {callServer} from "./utils";
+    import Menu from './menu.svelte';
 
     let name = "";
     let email = "";
@@ -16,6 +17,7 @@
     }
 </script>
 
+<Menu>
 {#if resp}
     <div class="max-w-2xl bg-white py-10 px-5 m-auto w-full mt-10">
 
@@ -80,4 +82,5 @@
         </form>        
     </div>
 {/if}
+</Menu>
 

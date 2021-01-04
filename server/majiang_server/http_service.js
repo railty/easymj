@@ -5,7 +5,6 @@ var http = require('../utils/http');
 var roomMgr = require("./roommgr");
 var userMgr = require("./usermgr");
 var tokenMgr = require("./tokenmgr");
-var bodyParser = require('body-parser');
 
 var app = express();
 var config = null;
@@ -14,7 +13,6 @@ var serverIp = "";
 
 //测试
 app.use(express.static(__dirname+"/../../public"));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/contact',function(req,res){
 	let data = req.query;
 
