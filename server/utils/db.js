@@ -753,4 +753,20 @@ exports.get_message = function(type,version,callback){
     });
 };
 
+exports.create_ticket = function(name, email, message,callback){
+    callback = callback == null? nop:callback;
+    var sql = "INSERT INTO t_tickets(name,email,message,create_time) VALUES('{0}','{1}','{2}',unix_timestamp(now()))";
+    sql = sql.format(name, email, message);
+    //console.log(sql);
+    query(sql,function(err,rows,fields){
+        if(err){
+            callback(null);
+            throw err;
+        }
+        else{
+            callback(rows.insertId);
+        }
+    });
+};
+
 exports.query = query;

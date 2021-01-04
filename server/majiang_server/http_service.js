@@ -5,6 +5,7 @@ var http = require('../utils/http');
 var roomMgr = require("./roommgr");
 var userMgr = require("./usermgr");
 var tokenMgr = require("./tokenmgr");
+var bodyParser = require('body-parser');
 
 var app = express();
 var config = null;
@@ -13,6 +14,27 @@ var serverIp = "";
 
 //测试
 app.use(express.static(__dirname+"/../../public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.post('/contact',function(req,res){
+	let data = req.query;
+
+	db.create_ticket(data.name, data.email, data.message, function(ret) {
+		if(ret){
+			data.code = 'ok';
+			data.resp = `
+			<li>Your message has been received.</li>
+			<li>Thanks for your interest</li>
+			<li>An email with auto reply will be send to you shortly</li>
+			<li>We will contact you via email once when have a resolution</li>`;
+		}
+		else{
+			data.code = 'error';
+			data.resp = `unexpected error, please try again later`;
+		}
+		res.send(JSON.stringify(data));
+	});	
+
+});
 
 app.all('*', function(req, res, next) {
 	console.log(req.originalUrl);

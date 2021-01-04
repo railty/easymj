@@ -8899,7 +8899,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640");
     			attr_dev(td, "style", td_style_value = /*m*/ ctx[29].used ? "opacity:0.15" : "opacity:1");
     			add_location(td, file, 304, 3, 6594);
     		},
@@ -8907,7 +8907,7 @@ var app = (function () {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*tiles*/ 8 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    			if (dirty[0] & /*tiles*/ 8 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640")) {
     				attr_dev(td, "class", td_class_value);
     			}
 
@@ -8952,7 +8952,7 @@ var app = (function () {
     			}
 
     			t = space();
-    			attr_dev(tr, "class", "svelte-wqqdn5");
+    			attr_dev(tr, "class", "svelte-1wy0640");
     			add_location(tr, file, 302, 2, 6567);
     		},
     		m: function mount(target, anchor) {
@@ -9014,14 +9014,14 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640");
     			add_location(td, file, 316, 4, 6806);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*seats*/ 1 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    			if (dirty[0] & /*seats*/ 1 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640")) {
     				attr_dev(td, "class", td_class_value);
     			}
     		},
@@ -9049,14 +9049,14 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640");
     			add_location(td, file, 322, 5, 6933);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*showSeats*/ 4 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    			if (dirty[0] & /*showSeats*/ 4 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640")) {
     				attr_dev(td, "class", td_class_value);
     			}
     		},
@@ -9097,7 +9097,7 @@ var app = (function () {
     			t0 = space();
     			td = element("td");
     			td.textContent = "|";
-    			attr_dev(td, "class", "svelte-wqqdn5");
+    			attr_dev(td, "class", "svelte-1wy0640");
     			add_location(td, file, 324, 4, 6991);
     		},
     		m: function mount(target, anchor) {
@@ -9159,14 +9159,14 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640");
     			add_location(td, file, 329, 4, 7067);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*discardSeats*/ 2 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    			if (dirty[0] & /*discardSeats*/ 2 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-1wy0640")) {
     				attr_dev(td, "class", td_class_value);
     			}
     		},
@@ -9241,11 +9241,11 @@ var app = (function () {
     			}
 
     			t2 = space();
-    			attr_dev(tr0, "class", "svelte-wqqdn5");
+    			attr_dev(tr0, "class", "svelte-1wy0640");
     			add_location(tr0, file, 314, 2, 6776);
-    			attr_dev(tr1, "class", "svelte-wqqdn5");
+    			attr_dev(tr1, "class", "svelte-1wy0640");
     			add_location(tr1, file, 319, 2, 6871);
-    			attr_dev(tr2, "class", "svelte-wqqdn5");
+    			attr_dev(tr2, "class", "svelte-1wy0640");
     			add_location(tr2, file, 327, 2, 7024);
     		},
     		m: function mount(target, anchor) {
@@ -9375,7 +9375,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-tiao" + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-tiao" + " svelte-1wy0640");
     			add_location(td, file, 339, 3, 7218);
     		},
     		m: function mount(target, anchor) {
@@ -9405,7 +9405,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-bing" + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-bing" + " svelte-1wy0640");
     			add_location(td, file, 344, 3, 7328);
     		},
     		m: function mount(target, anchor) {
@@ -9435,7 +9435,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-wan" + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-wan" + " svelte-1wy0640");
     			add_location(td, file, 349, 3, 7438);
     		},
     		m: function mount(target, anchor) {
@@ -9465,7 +9465,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + " svelte-wqqdn5");
+    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + " svelte-1wy0640");
     			add_location(td, file, 354, 3, 7576);
     		},
     		m: function mount(target, anchor) {
@@ -9628,36 +9628,36 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(button0, "class", "svelte-wqqdn5");
+    			attr_dev(button0, "class", "svelte-1wy0640");
     			add_location(button0, file, 293, 0, 6220);
-    			attr_dev(button1, "class", "svelte-wqqdn5");
+    			attr_dev(button1, "class", "svelte-1wy0640");
     			add_location(button1, file, 294, 0, 6261);
-    			attr_dev(button2, "class", "svelte-wqqdn5");
+    			attr_dev(button2, "class", "svelte-1wy0640");
     			add_location(button2, file, 295, 0, 6299);
-    			attr_dev(button3, "class", "svelte-wqqdn5");
+    			attr_dev(button3, "class", "svelte-1wy0640");
     			add_location(button3, file, 296, 0, 6357);
-    			attr_dev(button4, "class", "svelte-wqqdn5");
+    			attr_dev(button4, "class", "svelte-1wy0640");
     			add_location(button4, file, 297, 0, 6411);
-    			attr_dev(button5, "class", "svelte-wqqdn5");
+    			attr_dev(button5, "class", "svelte-1wy0640");
     			add_location(button5, file, 298, 0, 6449);
     			set_style(table0, "background-color", "indigo");
-    			attr_dev(table0, "class", "svelte-wqqdn5");
+    			attr_dev(table0, "class", "svelte-1wy0640");
     			add_location(table0, file, 300, 1, 6502);
-    			attr_dev(div0, "class", "svelte-wqqdn5");
+    			attr_dev(div0, "class", "svelte-1wy0640");
     			add_location(div0, file, 299, 0, 6495);
-    			attr_dev(table1, "class", "svelte-wqqdn5");
+    			attr_dev(table1, "class", "svelte-1wy0640");
     			add_location(table1, file, 312, 1, 6737);
-    			attr_dev(div1, "class", "svelte-wqqdn5");
+    			attr_dev(div1, "class", "svelte-1wy0640");
     			add_location(div1, file, 311, 0, 6730);
-    			attr_dev(tr0, "class", "svelte-wqqdn5");
+    			attr_dev(tr0, "class", "svelte-1wy0640");
     			add_location(tr0, file, 337, 1, 7167);
-    			attr_dev(tr1, "class", "svelte-wqqdn5");
+    			attr_dev(tr1, "class", "svelte-1wy0640");
     			add_location(tr1, file, 342, 1, 7277);
-    			attr_dev(tr2, "class", "svelte-wqqdn5");
+    			attr_dev(tr2, "class", "svelte-1wy0640");
     			add_location(tr2, file, 347, 1, 7387);
-    			attr_dev(tr3, "class", "svelte-wqqdn5");
+    			attr_dev(tr3, "class", "svelte-1wy0640");
     			add_location(tr3, file, 352, 1, 7496);
-    			attr_dev(table2, "class", "svelte-wqqdn5");
+    			attr_dev(table2, "class", "svelte-1wy0640");
     			add_location(table2, file, 336, 0, 7158);
     		},
     		l: function claim(nodes) {

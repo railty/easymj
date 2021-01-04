@@ -179,3 +179,16 @@ CREATE TABLE `t_users` (
 -- Records of t_users
 -- ----------------------------
 INSERT INTO `t_users` VALUES ('1', 'guest_123456', '5aSP5L6v6LWM5Zyj', '0', null, '1', '0', '1000', '81', '383543', '[{\"uuid\":\"1482841988145926471\",\"id\":\"926471\",\"time\":1482841989,\"seats\":[{\"userid\":1,\"name\":\"夏侯赌圣\",\"score\":-3},{\"userid\":2,\"name\":\"东方雀圣\",\"score\":2},{\"userid\":3,\"name\":\"上官赌圣\",\"score\":2},{\"userid\":4,\"name\":\"东郭好运\",\"score\":-1}]},{\"uuid\":\"1482842388256192618\",\"id\":\"192618\",\"time\":1482842389,\"seats\":[{\"userid\":1,\"name\":\"夏侯赌圣\",\"score\":6},{\"userid\":2,\"name\":\"东方雀圣\",\"score\":0},{\"userid\":3,\"name\":\"上官赌圣\",\"score\":-5},{\"userid\":4,\"name\":\"东郭好运\",\"score\":-1}]},{\"uuid\":\"1482842646174550877\",\"id\":\"550877\",\"time\":1482842647,\"seats\":[{\"userid\":1,\"name\":\"5aSP5L6v6LWM5Zyj\",\"score\":-2},{\"userid\":2,\"name\":\"5Lic5pa56ZuA5Zyj\",\"score\":5},{\"userid\":3,\"name\":\"5LiK5a6Y6LWM5Zyj\",\"score\":-7},{\"userid\":4,\"name\":\"5Lic6YOt5aW96L+Q\",\"score\":4}]}]');
+
+-- ----------------------------
+-- Table structure for `t_message`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tickets`;
+CREATE TABLE `t_tickets` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `message` varchar(1024) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
