@@ -1,0 +1,176 @@
+.tile-r{
+    background-image: url(right.png);
+    background-size: 450px 210px;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 42px;
+    max-width: 100%;
+}	
+
+.tile-r-1t {
+    background-position: -0px -0px
+}
+
+.tile-r-2t {
+    background-position: -50px -0px
+}
+
+.tile-r-3t {
+    background-position: -100px -0px
+}
+
+.tile-r-4t {
+    background-position: -150px -0px
+}
+
+.tile-r-5t {
+    background-position: -200px -0px
+}
+
+.tile-r-6t {
+    background-position: -250px -0px
+}
+
+.tile-r-7t {
+    background-position: -300px -0px
+}
+
+.tile-r-8t {
+    background-position: -350px -0px
+}
+
+.tile-r-9t {
+    background-position: -400px -0px
+}
+
+.tile-r-1b {
+    background-position: -0px -42px
+}
+
+.tile-r-2b {
+    background-position: -50px -42px
+}
+
+.tile-r-3b {
+    background-position: -100px -42px
+}
+
+.tile-r-4b {
+    background-position: -150px -42px
+}
+
+.tile-r-5b {
+    background-position: -200px -42px
+}
+
+.tile-r-6b {
+    background-position: -250px -42px
+}
+
+.tile-r-7b {
+    background-position: -300px -42px
+}
+
+.tile-r-8b {
+    background-position: -350px -42px
+}
+
+.tile-r-9b {
+    background-position: -400px -42px
+}
+
+.tile-r-1w {
+    background-position: -0px -84px
+}
+
+.tile-r-2w {
+    background-position: -50px -84px
+}
+
+.tile-r-3w {
+    background-position: -100px -84px
+}
+
+.tile-r-4w {
+    background-position: -150px -84px
+}
+
+.tile-r-5w {
+    background-position: -200px -84px
+}
+
+.tile-r-6w {
+    background-position: -250px -84px
+}
+
+.tile-r-7w {
+    background-position: -300px -84px
+}
+
+.tile-r-8w {
+    background-position: -350px -84px
+}
+
+.tile-r-9w {
+    background-position: -400px -84px
+}
+
+.tile-r-east {
+    background-position: -0px -126px
+}
+
+.tile-r-west {
+    background-position: -50px -126px
+}
+
+.tile-r-south {
+    background-position: -100px -126px
+}
+
+.tile-r-north {
+    background-position: -150px -126px
+}
+
+.tile-r-zhong {
+    background-position: -200px -126px
+}
+
+.tile-r-fa {
+    background-position: -250px -126px
+}
+
+.tile-r-bai {
+    background-position: -300px -126px
+}
+
+.tile-r-spring {
+    background-position: -0px -168px
+}
+
+.tile-r-summer {
+    background-position: -50px -168px
+}
+
+.tile-r-fall {
+    background-position: -100px -168px
+}
+
+.tile-r-winter {
+    background-position: -150px -168px
+}
+
+.tile-r-mei {
+    background-position: -200px -168px
+}
+
+.tile-r-lan {
+    background-position: -250px -168px
+}
+
+.tile-r-zhu {
+    background-position: -300px -168px
+}
+
+.tile-r-ju {
+    background-position: -350px -168px
+}

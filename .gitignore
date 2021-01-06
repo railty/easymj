@@ -9,4 +9,4 @@ client/build
 client/library 
 client/local
 client/temp
-
+img/node_modules

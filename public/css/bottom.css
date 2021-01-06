@@ -1,0 +1,175 @@
+.tile-b{
+    background-image: url(bottom.png);
+    background-size: 684px 570px;
+    background-repeat: no-repeat;
+    width: 76px;
+    height: 114px;
+    max-width: 100%;
+}	
+.tile-b-1t {
+    background-position: -0px -0px
+}
+
+.tile-b-2t {
+    background-position: -76px -0px
+}
+
+.tile-b-3t {
+    background-position: -152px -0px
+}
+
+.tile-b-4t {
+    background-position: -228px -0px
+}
+
+.tile-b-5t {
+    background-position: -304px -0px
+}
+
+.tile-b-6t {
+    background-position: -380px -0px
+}
+
+.tile-b-7t {
+    background-position: -456px -0px
+}
+
+.tile-b-8t {
+    background-position: -532px -0px
+}
+
+.tile-b-9t {
+    background-position: -608px -0px
+}
+
+.tile-b-1b {
+    background-position: -0px -114px
+}
+
+.tile-b-2b {
+    background-position: -76px -114px
+}
+
+.tile-b-3b {
+    background-position: -152px -114px
+}
+
+.tile-b-4b {
+    background-position: -228px -114px
+}
+
+.tile-b-5b {
+    background-position: -304px -114px
+}
+
+.tile-b-6b {
+    background-position: -380px -114px
+}
+
+.tile-b-7b {
+    background-position: -456px -114px
+}
+
+.tile-b-8b {
+    background-position: -532px -114px
+}
+
+.tile-b-9b {
+    background-position: -608px -114px
+}
+
+.tile-b-1w {
+    background-position: -0px -228px
+}
+
+.tile-b-2w {
+    background-position: -76px -228px
+}
+
+.tile-b-3w {
+    background-position: -152px -228px
+}
+
+.tile-b-4w {
+    background-position: -228px -228px
+}
+
+.tile-b-5w {
+    background-position: -304px -228px
+}
+
+.tile-b-6w {
+    background-position: -380px -228px
+}
+
+.tile-b-7w {
+    background-position: -456px -228px
+}
+
+.tile-b-8w {
+    background-position: -532px -228px
+}
+
+.tile-b-9w {
+    background-position: -608px -228px
+}
+
+.tile-b-east {
+background-position: -0px -342px
+}
+
+.tile-b-west {
+background-position: -76px -342px
+}
+
+.tile-b-south {
+background-position: -152px -342px
+}
+
+.tile-b-north {
+background-position: -228px -342px
+}
+
+.tile-b-zhong {
+background-position: -304px -342px
+}
+
+.tile-b-fa {
+background-position: -380px -342px
+}
+
+.tile-b-bai {
+background-position: -456px -342px
+}
+
+.tile-b-spring {
+background-position: -0px -456px
+}
+
+.tile-b-summer {
+background-position: -76px -456px
+}
+
+.tile-b-fall {
+background-position: -152px -456px
+}
+
+.tile-b-winter {
+background-position: -228px -456px
+}
+
+.tile-b-mei {
+background-position: -304px -456px
+}
+
+.tile-b-lan {
+background-position: -380px -456px
+}
+
+.tile-b-zhu {
+background-position: -456px -456px
+}
+
+.tile-b-ju {
+background-position: -532px -456px
+}

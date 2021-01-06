@@ -8825,73 +8825,125 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[26] = list[i];
-    	child_ctx[28] = i;
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
-    function get_each_context_6(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[32] = list[i];
-    	return child_ctx;
+    // (315:4) {#each seats[0] as m}
+    function create_each_block_5(ctx) {
+    	let div1;
+    	let div0;
+    	let div0_class_value;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			attr_dev(div0, "class", div0_class_value = "tile-t tile-t-" + /*m*/ ctx[21].icon + " svelte-1kacku4");
+    			add_location(div0, file, 316, 6, 7042);
+    			attr_dev(div1, "class", " svelte-1kacku4");
+    			add_location(div1, file, 315, 5, 7021);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1 && div0_class_value !== (div0_class_value = "tile-t tile-t-" + /*m*/ ctx[21].icon + " svelte-1kacku4")) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_5.name,
+    		type: "each",
+    		source: "(315:4) {#each seats[0] as m}",
+    		ctx
+    	});
+
+    	return block;
     }
 
-    function get_each_context_7(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
-    	return child_ctx;
+    // (330:4) {#each seats[1] as m}
+    function create_each_block_4(ctx) {
+    	let div1;
+    	let div0;
+    	let div0_class_value;
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			t = space();
+    			attr_dev(div0, "class", div0_class_value = "tile-l tile-l-" + /*m*/ ctx[21].icon + " svelte-1kacku4");
+    			add_location(div0, file, 331, 6, 7477);
+    			attr_dev(div1, "class", " svelte-1kacku4");
+    			add_location(div1, file, 330, 5, 7456);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div1, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1 && div0_class_value !== (div0_class_value = "tile-l tile-l-" + /*m*/ ctx[21].icon + " svelte-1kacku4")) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_4.name,
+    		type: "each",
+    		source: "(330:4) {#each seats[1] as m}",
+    		ctx
+    	});
+
+    	return block;
     }
 
-    function get_each_context_8(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
-    	return child_ctx;
-    }
-
-    function get_each_context_9(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[39] = list[i];
-    	return child_ctx;
-    }
-
-    function get_each_context_10(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
-    	return child_ctx;
-    }
-
-    // (304:3) {#each mj as m}
-    function create_each_block_10(ctx) {
+    // (341:7) {#each mj as m}
+    function create_each_block_3(ctx) {
     	let td;
     	let td_class_value;
     	let td_style_value;
@@ -8899,19 +8951,19 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
-    			attr_dev(td, "style", td_style_value = /*m*/ ctx[29].used ? "opacity:0.15" : "opacity:1");
-    			add_location(td, file, 304, 3, 6594);
+    			attr_dev(td, "class", td_class_value = "tile-t tile-t-" + /*m*/ ctx[21].icon + " svelte-1kacku4");
+    			attr_dev(td, "style", td_style_value = /*m*/ ctx[21].used ? "opacity:0.15" : "opacity:1");
+    			add_location(td, file, 341, 8, 7750);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*tiles*/ 8 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
+    			if (dirty[0] & /*tiles*/ 2 && td_class_value !== (td_class_value = "tile-t tile-t-" + /*m*/ ctx[21].icon + " svelte-1kacku4")) {
     				attr_dev(td, "class", td_class_value);
     			}
 
-    			if (dirty[0] & /*tiles*/ 8 && td_style_value !== (td_style_value = /*m*/ ctx[29].used ? "opacity:0.15" : "opacity:1")) {
+    			if (dirty[0] & /*tiles*/ 2 && td_style_value !== (td_style_value = /*m*/ ctx[21].used ? "opacity:0.15" : "opacity:1")) {
     				attr_dev(td, "style", td_style_value);
     			}
     		},
@@ -8922,25 +8974,25 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_10.name,
+    		id: create_each_block_3.name,
     		type: "each",
-    		source: "(304:3) {#each mj as m}",
+    		source: "(341:7) {#each mj as m}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (302:1) {#each tiles as mj}
-    function create_each_block_9(ctx) {
+    // (339:5) {#each tiles as mj}
+    function create_each_block_2(ctx) {
     	let tr;
     	let t;
-    	let each_value_10 = /*mj*/ ctx[39];
-    	validate_each_argument(each_value_10);
+    	let each_value_3 = /*mj*/ ctx[26];
+    	validate_each_argument(each_value_3);
     	let each_blocks = [];
 
-    	for (let i = 0; i < each_value_10.length; i += 1) {
-    		each_blocks[i] = create_each_block_10(get_each_context_10(ctx, each_value_10, i));
+    	for (let i = 0; i < each_value_3.length; i += 1) {
+    		each_blocks[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
     	}
 
     	const block = {
@@ -8952,8 +9004,8 @@ var app = (function () {
     			}
 
     			t = space();
-    			attr_dev(tr, "class", "svelte-wqqdn5");
-    			add_location(tr, file, 302, 2, 6567);
+    			attr_dev(tr, "class", "svelte-1kacku4");
+    			add_location(tr, file, 339, 6, 7714);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -8965,18 +9017,18 @@ var app = (function () {
     			append_dev(tr, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*tiles*/ 8) {
-    				each_value_10 = /*mj*/ ctx[39];
-    				validate_each_argument(each_value_10);
+    			if (dirty[0] & /*tiles*/ 2) {
+    				each_value_3 = /*mj*/ ctx[26];
+    				validate_each_argument(each_value_3);
     				let i;
 
-    				for (i = 0; i < each_value_10.length; i += 1) {
-    					const child_ctx = get_each_context_10(ctx, each_value_10, i);
+    				for (i = 0; i < each_value_3.length; i += 1) {
+    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block_10(child_ctx);
+    						each_blocks[i] = create_each_block_3(child_ctx);
     						each_blocks[i].c();
     						each_blocks[i].m(tr, t);
     					}
@@ -8986,7 +9038,7 @@ var app = (function () {
     					each_blocks[i].d(1);
     				}
 
-    				each_blocks.length = each_value_10.length;
+    				each_blocks.length = each_value_3.length;
     			}
     		},
     		d: function destroy(detaching) {
@@ -8997,452 +9049,44 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_9.name,
-    		type: "each",
-    		source: "(302:1) {#each tiles as mj}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (316:3) {#each seat as m}
-    function create_each_block_8(ctx) {
-    	let td;
-    	let td_class_value;
-
-    	const block = {
-    		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
-    			add_location(td, file, 316, 4, 6806);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*seats*/ 1 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
-    				attr_dev(td, "class", td_class_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_8.name,
-    		type: "each",
-    		source: "(316:3) {#each seat as m}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (322:4) {#each ms as m}
-    function create_each_block_7(ctx) {
-    	let td;
-    	let td_class_value;
-
-    	const block = {
-    		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
-    			add_location(td, file, 322, 5, 6933);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*showSeats*/ 4 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
-    				attr_dev(td, "class", td_class_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_7.name,
-    		type: "each",
-    		source: "(322:4) {#each ms as m}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (321:3) {#each showSeats[idx] as ms}
-    function create_each_block_6(ctx) {
-    	let t0;
-    	let td;
-    	let each_value_7 = /*ms*/ ctx[32];
-    	validate_each_argument(each_value_7);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value_7.length; i += 1) {
-    		each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
-    	}
-
-    	const block = {
-    		c: function create() {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t0 = space();
-    			td = element("td");
-    			td.textContent = "|";
-    			attr_dev(td, "class", "svelte-wqqdn5");
-    			add_location(td, file, 324, 4, 6991);
-    		},
-    		m: function mount(target, anchor) {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
-
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, td, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*showSeats*/ 4) {
-    				each_value_7 = /*ms*/ ctx[32];
-    				validate_each_argument(each_value_7);
-    				let i;
-
-    				for (i = 0; i < each_value_7.length; i += 1) {
-    					const child_ctx = get_each_context_7(ctx, each_value_7, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block_7(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(t0.parentNode, t0);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value_7.length;
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_6.name,
-    		type: "each",
-    		source: "(321:3) {#each showSeats[idx] as ms}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (329:3) {#each discardSeats[idx] as m}
-    function create_each_block_5(ctx) {
-    	let td;
-    	let td_class_value;
-
-    	const block = {
-    		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5");
-    			add_location(td, file, 329, 4, 7067);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*discardSeats*/ 2 && td_class_value !== (td_class_value = "sprite sprite-" + /*m*/ ctx[29].icon + " svelte-wqqdn5")) {
-    				attr_dev(td, "class", td_class_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_5.name,
-    		type: "each",
-    		source: "(329:3) {#each discardSeats[idx] as m}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (314:2) {#each seats as seat, idx}
-    function create_each_block_4(ctx) {
-    	let tr0;
-    	let t0;
-    	let tr1;
-    	let t1;
-    	let tr2;
-    	let t2;
-    	let each_value_8 = /*seat*/ ctx[26];
-    	validate_each_argument(each_value_8);
-    	let each_blocks_2 = [];
-
-    	for (let i = 0; i < each_value_8.length; i += 1) {
-    		each_blocks_2[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
-    	}
-
-    	let each_value_6 = /*showSeats*/ ctx[2][/*idx*/ ctx[28]];
-    	validate_each_argument(each_value_6);
-    	let each_blocks_1 = [];
-
-    	for (let i = 0; i < each_value_6.length; i += 1) {
-    		each_blocks_1[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
-    	}
-
-    	let each_value_5 = /*discardSeats*/ ctx[1][/*idx*/ ctx[28]];
-    	validate_each_argument(each_value_5);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value_5.length; i += 1) {
-    		each_blocks[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
-    	}
-
-    	const block = {
-    		c: function create() {
-    			tr0 = element("tr");
-
-    			for (let i = 0; i < each_blocks_2.length; i += 1) {
-    				each_blocks_2[i].c();
-    			}
-
-    			t0 = space();
-    			tr1 = element("tr");
-
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].c();
-    			}
-
-    			t1 = space();
-    			tr2 = element("tr");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t2 = space();
-    			attr_dev(tr0, "class", "svelte-wqqdn5");
-    			add_location(tr0, file, 314, 2, 6776);
-    			attr_dev(tr1, "class", "svelte-wqqdn5");
-    			add_location(tr1, file, 319, 2, 6871);
-    			attr_dev(tr2, "class", "svelte-wqqdn5");
-    			add_location(tr2, file, 327, 2, 7024);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, tr0, anchor);
-
-    			for (let i = 0; i < each_blocks_2.length; i += 1) {
-    				each_blocks_2[i].m(tr0, null);
-    			}
-
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, tr1, anchor);
-
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].m(tr1, null);
-    			}
-
-    			insert_dev(target, t1, anchor);
-    			insert_dev(target, tr2, anchor);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(tr2, null);
-    			}
-
-    			append_dev(tr2, t2);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*seats*/ 1) {
-    				each_value_8 = /*seat*/ ctx[26];
-    				validate_each_argument(each_value_8);
-    				let i;
-
-    				for (i = 0; i < each_value_8.length; i += 1) {
-    					const child_ctx = get_each_context_8(ctx, each_value_8, i);
-
-    					if (each_blocks_2[i]) {
-    						each_blocks_2[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks_2[i] = create_each_block_8(child_ctx);
-    						each_blocks_2[i].c();
-    						each_blocks_2[i].m(tr0, null);
-    					}
-    				}
-
-    				for (; i < each_blocks_2.length; i += 1) {
-    					each_blocks_2[i].d(1);
-    				}
-
-    				each_blocks_2.length = each_value_8.length;
-    			}
-
-    			if (dirty[0] & /*showSeats*/ 4) {
-    				each_value_6 = /*showSeats*/ ctx[2][/*idx*/ ctx[28]];
-    				validate_each_argument(each_value_6);
-    				let i;
-
-    				for (i = 0; i < each_value_6.length; i += 1) {
-    					const child_ctx = get_each_context_6(ctx, each_value_6, i);
-
-    					if (each_blocks_1[i]) {
-    						each_blocks_1[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks_1[i] = create_each_block_6(child_ctx);
-    						each_blocks_1[i].c();
-    						each_blocks_1[i].m(tr1, null);
-    					}
-    				}
-
-    				for (; i < each_blocks_1.length; i += 1) {
-    					each_blocks_1[i].d(1);
-    				}
-
-    				each_blocks_1.length = each_value_6.length;
-    			}
-
-    			if (dirty[0] & /*discardSeats*/ 2) {
-    				each_value_5 = /*discardSeats*/ ctx[1][/*idx*/ ctx[28]];
-    				validate_each_argument(each_value_5);
-    				let i;
-
-    				for (i = 0; i < each_value_5.length; i += 1) {
-    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block_5(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(tr2, t2);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value_5.length;
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(tr0);
-    			destroy_each(each_blocks_2, detaching);
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(tr1);
-    			destroy_each(each_blocks_1, detaching);
-    			if (detaching) detach_dev(t1);
-    			if (detaching) detach_dev(tr2);
-    			destroy_each(each_blocks, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_4.name,
-    		type: "each",
-    		source: "(314:2) {#each seats as seat, idx}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (339:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
-    function create_each_block_3(ctx) {
-    	let td;
-    	let td_class_value;
-
-    	const block = {
-    		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-tiao" + " svelte-wqqdn5");
-    			add_location(td, file, 339, 3, 7218);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_3.name,
-    		type: "each",
-    		source: "(339:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (344:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
-    function create_each_block_2(ctx) {
-    	let td;
-    	let td_class_value;
-
-    	const block = {
-    		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-bing" + " svelte-wqqdn5");
-    			add_location(td, file, 344, 3, 7328);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(344:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
+    		source: "(339:5) {#each tiles as mj}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (349:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+    // (350:4) {#each seats[3] as m}
     function create_each_block_1(ctx) {
-    	let td;
-    	let td_class_value;
+    	let div1;
+    	let div0;
+    	let div0_class_value;
+    	let t;
 
     	const block = {
     		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + "-wan" + " svelte-wqqdn5");
-    			add_location(td, file, 349, 3, 7438);
+    			div1 = element("div");
+    			div0 = element("div");
+    			t = space();
+    			attr_dev(div0, "class", div0_class_value = "tile-r tile-r-" + /*m*/ ctx[21].icon + " svelte-1kacku4");
+    			add_location(div0, file, 351, 6, 8040);
+    			attr_dev(div1, "class", " svelte-1kacku4");
+    			add_location(div1, file, 350, 5, 8019);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div1, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1 && div0_class_value !== (div0_class_value = "tile-r tile-r-" + /*m*/ ctx[21].icon + " svelte-1kacku4")) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
+    			if (detaching) detach_dev(div1);
     		}
     	};
 
@@ -9450,29 +9094,42 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(349:2) {#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}",
+    		source: "(350:4) {#each seats[3] as m}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (354:2) {#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}
+    // (364:4) {#each seats[2] as m}
     function create_each_block(ctx) {
-    	let td;
-    	let td_class_value;
+    	let div1;
+    	let div0;
+    	let div0_class_value;
+    	let t;
 
     	const block = {
     		c: function create() {
-    			td = element("td");
-    			attr_dev(td, "class", td_class_value = "sprite sprite-" + /*n*/ ctx[17] + " svelte-wqqdn5");
-    			add_location(td, file, 354, 3, 7576);
+    			div1 = element("div");
+    			div0 = element("div");
+    			t = space();
+    			attr_dev(div0, "class", div0_class_value = "tile-b tile-b-" + /*m*/ ctx[21].icon + " svelte-1kacku4");
+    			add_location(div0, file, 365, 6, 8423);
+    			attr_dev(div1, "class", " svelte-1kacku4");
+    			add_location(div1, file, 364, 5, 8402);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, td, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div1, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*seats*/ 1 && div0_class_value !== (div0_class_value = "tile-b tile-b-" + /*m*/ ctx[21].icon + " svelte-1kacku4")) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(td);
+    			if (detaching) detach_dev(div1);
     		}
     	};
 
@@ -9480,7 +9137,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(354:2) {#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}",
+    		source: "(364:4) {#each seats[2] as m}",
     		ctx
     	});
 
@@ -9500,67 +9157,82 @@ var app = (function () {
     	let t9;
     	let button5;
     	let t11;
+    	let div13;
+    	let div4;
     	let div0;
-    	let table0;
     	let t12;
-    	let div1;
-    	let table1;
+    	let div0_class_value;
     	let t13;
-    	let table2;
-    	let tr0;
+    	let div2;
     	let t14;
-    	let tr1;
+    	let div1;
     	let t15;
-    	let tr2;
+    	let div3;
     	let t16;
-    	let tr3;
+    	let div3_class_value;
+    	let div4_class_value;
+    	let t17;
+    	let div8;
+    	let div5;
+    	let div5_class_value;
+    	let t18;
+    	let div6;
+    	let table;
+    	let t19;
+    	let div7;
+    	let div7_class_value;
+    	let t20;
+    	let div12;
+    	let div9;
+    	let t21;
+    	let div9_class_value;
+    	let t22;
+    	let div10;
+    	let t23;
+    	let div11;
+    	let t24;
+    	let div11_class_value;
+    	let div12_class_value;
+    	let div13_class_value;
     	let mounted;
     	let dispose;
-    	let each_value_9 = /*tiles*/ ctx[3];
-    	validate_each_argument(each_value_9);
-    	let each_blocks_5 = [];
-
-    	for (let i = 0; i < each_value_9.length; i += 1) {
-    		each_blocks_5[i] = create_each_block_9(get_each_context_9(ctx, each_value_9, i));
-    	}
-
-    	let each_value_4 = /*seats*/ ctx[0];
-    	validate_each_argument(each_value_4);
+    	let each_value_5 = /*seats*/ ctx[0][0];
+    	validate_each_argument(each_value_5);
     	let each_blocks_4 = [];
 
-    	for (let i = 0; i < each_value_4.length; i += 1) {
-    		each_blocks_4[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    	for (let i = 0; i < each_value_5.length; i += 1) {
+    		each_blocks_4[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
     	}
 
-    	let each_value_3 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    	validate_each_argument(each_value_3);
+    	let each_value_4 = /*seats*/ ctx[0][1];
+    	validate_each_argument(each_value_4);
     	let each_blocks_3 = [];
 
-    	for (let i = 0; i < 9; i += 1) {
-    		each_blocks_3[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	for (let i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks_3[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
     	}
 
-    	let each_value_2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	let each_value_2 = /*tiles*/ ctx[1];
     	validate_each_argument(each_value_2);
     	let each_blocks_2 = [];
 
-    	for (let i = 0; i < 9; i += 1) {
+    	for (let i = 0; i < each_value_2.length; i += 1) {
     		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
     	}
 
-    	let each_value_1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    	let each_value_1 = /*seats*/ ctx[0][3];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
-    	for (let i = 0; i < 9; i += 1) {
+    	for (let i = 0; i < each_value_1.length; i += 1) {
     		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
-    	let each_value = ["east", "west", "south", "north", "zhong", "fa", "bai"];
+    	let each_value = /*seats*/ ctx[0][2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
-    	for (let i = 0; i < 7; i += 1) {
+    	for (let i = 0; i < each_value.length; i += 1) {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
@@ -9584,81 +9256,114 @@ var app = (function () {
     			button5 = element("button");
     			button5.textContent = "AutoPlay";
     			t11 = space();
+    			div13 = element("div");
+    			div4 = element("div");
     			div0 = element("div");
-    			table0 = element("table");
-
-    			for (let i = 0; i < each_blocks_5.length; i += 1) {
-    				each_blocks_5[i].c();
-    			}
-
-    			t12 = space();
-    			div1 = element("div");
-    			table1 = element("table");
+    			t12 = text("tl");
+    			t13 = space();
+    			div2 = element("div");
 
     			for (let i = 0; i < each_blocks_4.length; i += 1) {
     				each_blocks_4[i].c();
     			}
 
-    			t13 = space();
-    			table2 = element("table");
-    			tr0 = element("tr");
+    			t14 = space();
+    			div1 = element("div");
+    			t15 = space();
+    			div3 = element("div");
+    			t16 = text("tr");
+    			t17 = space();
+    			div8 = element("div");
+    			div5 = element("div");
 
-    			for (let i = 0; i < 9; i += 1) {
+    			for (let i = 0; i < each_blocks_3.length; i += 1) {
     				each_blocks_3[i].c();
     			}
 
-    			t14 = space();
-    			tr1 = element("tr");
+    			t18 = space();
+    			div6 = element("div");
+    			table = element("table");
 
-    			for (let i = 0; i < 9; i += 1) {
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
     				each_blocks_2[i].c();
     			}
 
-    			t15 = space();
-    			tr2 = element("tr");
+    			t19 = space();
+    			div7 = element("div");
 
-    			for (let i = 0; i < 9; i += 1) {
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].c();
     			}
 
-    			t16 = space();
-    			tr3 = element("tr");
+    			t20 = space();
+    			div12 = element("div");
+    			div9 = element("div");
+    			t21 = text("bl");
+    			t22 = space();
+    			div10 = element("div");
 
-    			for (let i = 0; i < 7; i += 1) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(button0, "class", "svelte-wqqdn5");
-    			add_location(button0, file, 293, 0, 6220);
-    			attr_dev(button1, "class", "svelte-wqqdn5");
-    			add_location(button1, file, 294, 0, 6261);
-    			attr_dev(button2, "class", "svelte-wqqdn5");
-    			add_location(button2, file, 295, 0, 6299);
-    			attr_dev(button3, "class", "svelte-wqqdn5");
-    			add_location(button3, file, 296, 0, 6357);
-    			attr_dev(button4, "class", "svelte-wqqdn5");
-    			add_location(button4, file, 297, 0, 6411);
-    			attr_dev(button5, "class", "svelte-wqqdn5");
-    			add_location(button5, file, 298, 0, 6449);
-    			set_style(table0, "background-color", "indigo");
-    			attr_dev(table0, "class", "svelte-wqqdn5");
-    			add_location(table0, file, 300, 1, 6502);
-    			attr_dev(div0, "class", "svelte-wqqdn5");
-    			add_location(div0, file, 299, 0, 6495);
-    			attr_dev(table1, "class", "svelte-wqqdn5");
-    			add_location(table1, file, 312, 1, 6737);
-    			attr_dev(div1, "class", "svelte-wqqdn5");
-    			add_location(div1, file, 311, 0, 6730);
-    			attr_dev(tr0, "class", "svelte-wqqdn5");
-    			add_location(tr0, file, 337, 1, 7167);
-    			attr_dev(tr1, "class", "svelte-wqqdn5");
-    			add_location(tr1, file, 342, 1, 7277);
-    			attr_dev(tr2, "class", "svelte-wqqdn5");
-    			add_location(tr2, file, 347, 1, 7387);
-    			attr_dev(tr3, "class", "svelte-wqqdn5");
-    			add_location(tr3, file, 352, 1, 7496);
-    			attr_dev(table2, "class", "svelte-wqqdn5");
-    			add_location(table2, file, 336, 0, 7158);
+    			t23 = space();
+    			div11 = element("div");
+    			t24 = text("br");
+    			attr_dev(button0, "class", "svelte-1kacku4");
+    			add_location(button0, file, 299, 0, 6388);
+    			attr_dev(button1, "class", "svelte-1kacku4");
+    			add_location(button1, file, 300, 0, 6429);
+    			attr_dev(button2, "class", "svelte-1kacku4");
+    			add_location(button2, file, 301, 0, 6467);
+    			attr_dev(button3, "class", "svelte-1kacku4");
+    			add_location(button3, file, 302, 0, 6525);
+    			attr_dev(button4, "class", "svelte-1kacku4");
+    			add_location(button4, file, 303, 0, 6579);
+    			attr_dev(button5, "class", "svelte-1kacku4");
+    			add_location(button5, file, 304, 0, 6617);
+    			attr_dev(div0, "id", "tl");
+    			attr_dev(div0, "class", div0_class_value = "flex " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div0, file, 309, 3, 6824);
+    			attr_dev(div1, "class", "tile-t tile-t-back svelte-1kacku4");
+    			add_location(div1, file, 319, 4, 7116);
+    			attr_dev(div2, "id", "tm");
+    			attr_dev(div2, "class", "flex flex-grow border-solid border-blue-400 border-2 svelte-1kacku4");
+    			add_location(div2, file, 313, 3, 6915);
+    			attr_dev(div3, "id", "tr");
+    			attr_dev(div3, "class", div3_class_value = "flex " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div3, file, 322, 3, 7172);
+    			attr_dev(div4, "id", "t");
+    			attr_dev(div4, "class", div4_class_value = "flex flex-row " + /*h*/ ctx[10] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div4, file, 307, 2, 6743);
+    			attr_dev(div5, "id", "ml");
+    			attr_dev(div5, "class", div5_class_value = "flex flex-col " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div5, file, 328, 3, 7347);
+    			set_style(table, "background-color", "indigo");
+    			attr_dev(table, "class", "svelte-1kacku4");
+    			add_location(table, file, 337, 4, 7641);
+    			attr_dev(div6, "id", "mm");
+    			attr_dev(div6, "class", "flex flex-grow border-solid border-blue-400 border-2 svelte-1kacku4");
+    			add_location(div6, file, 336, 3, 7562);
+    			attr_dev(div7, "id", "mr");
+    			attr_dev(div7, "class", div7_class_value = "flex flex-col " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div7, file, 348, 3, 7910);
+    			attr_dev(div8, "id", "m");
+    			attr_dev(div8, "class", "flex flex-grow border-solid border-blue-400 border-2 svelte-1kacku4");
+    			add_location(div8, file, 327, 2, 7270);
+    			attr_dev(div9, "id", "bl");
+    			attr_dev(div9, "class", div9_class_value = "flex " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div9, file, 358, 3, 8205);
+    			attr_dev(div10, "id", "bm");
+    			attr_dev(div10, "class", "flex flex-grow border-solid border-blue-400 border-2 svelte-1kacku4");
+    			add_location(div10, file, 362, 3, 8296);
+    			attr_dev(div11, "id", "br");
+    			attr_dev(div11, "class", div11_class_value = "flex " + /*w*/ ctx[11] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div11, file, 370, 3, 8510);
+    			attr_dev(div12, "id", "b");
+    			attr_dev(div12, "class", div12_class_value = "flex " + /*h*/ ctx[10] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div12, file, 357, 2, 8134);
+    			attr_dev(div13, "class", div13_class_value = "flex flex-col " + /*th*/ ctx[8] + " " + /*tw*/ ctx[9] + " border-solid border-blue-400 border-2" + " svelte-1kacku4");
+    			add_location(div13, file, 306, 1, 6665);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9676,102 +9381,88 @@ var app = (function () {
     			insert_dev(target, t9, anchor);
     			insert_dev(target, button5, anchor);
     			insert_dev(target, t11, anchor);
-    			insert_dev(target, div0, anchor);
-    			append_dev(div0, table0);
-
-    			for (let i = 0; i < each_blocks_5.length; i += 1) {
-    				each_blocks_5[i].m(table0, null);
-    			}
-
-    			insert_dev(target, t12, anchor);
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, table1);
+    			insert_dev(target, div13, anchor);
+    			append_dev(div13, div4);
+    			append_dev(div4, div0);
+    			append_dev(div0, t12);
+    			append_dev(div4, t13);
+    			append_dev(div4, div2);
 
     			for (let i = 0; i < each_blocks_4.length; i += 1) {
-    				each_blocks_4[i].m(table1, null);
+    				each_blocks_4[i].m(div2, null);
     			}
 
-    			insert_dev(target, t13, anchor);
-    			insert_dev(target, table2, anchor);
-    			append_dev(table2, tr0);
+    			append_dev(div2, t14);
+    			append_dev(div2, div1);
+    			append_dev(div4, t15);
+    			append_dev(div4, div3);
+    			append_dev(div3, t16);
+    			append_dev(div13, t17);
+    			append_dev(div13, div8);
+    			append_dev(div8, div5);
 
-    			for (let i = 0; i < 9; i += 1) {
-    				each_blocks_3[i].m(tr0, null);
+    			for (let i = 0; i < each_blocks_3.length; i += 1) {
+    				each_blocks_3[i].m(div5, null);
     			}
 
-    			append_dev(table2, t14);
-    			append_dev(table2, tr1);
+    			append_dev(div8, t18);
+    			append_dev(div8, div6);
+    			append_dev(div6, table);
 
-    			for (let i = 0; i < 9; i += 1) {
-    				each_blocks_2[i].m(tr1, null);
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(table, null);
     			}
 
-    			append_dev(table2, t15);
-    			append_dev(table2, tr2);
+    			append_dev(div8, t19);
+    			append_dev(div8, div7);
 
-    			for (let i = 0; i < 9; i += 1) {
-    				each_blocks_1[i].m(tr2, null);
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(div7, null);
     			}
 
-    			append_dev(table2, t16);
-    			append_dev(table2, tr3);
+    			append_dev(div13, t20);
+    			append_dev(div13, div12);
+    			append_dev(div12, div9);
+    			append_dev(div9, t21);
+    			append_dev(div12, t22);
+    			append_dev(div12, div10);
 
-    			for (let i = 0; i < 7; i += 1) {
-    				each_blocks[i].m(tr3, null);
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div10, null);
     			}
+
+    			append_dev(div12, t23);
+    			append_dev(div12, div11);
+    			append_dev(div11, t24);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*setup*/ ctx[6], false, false, false),
-    					listen_dev(button1, "click", /*send*/ ctx[5], false, false, false),
-    					listen_dev(button2, "click", /*getServerInfo*/ ctx[4], false, false, false),
-    					listen_dev(button3, "click", /*getGameInfo*/ ctx[7], false, false, false),
-    					listen_dev(button4, "click", /*next*/ ctx[8], false, false, false),
-    					listen_dev(button5, "click", /*autoPlay*/ ctx[9], false, false, false)
+    					listen_dev(button0, "click", /*setup*/ ctx[4], false, false, false),
+    					listen_dev(button1, "click", /*send*/ ctx[3], false, false, false),
+    					listen_dev(button2, "click", /*getServerInfo*/ ctx[2], false, false, false),
+    					listen_dev(button3, "click", /*getGameInfo*/ ctx[5], false, false, false),
+    					listen_dev(button4, "click", /*next*/ ctx[6], false, false, false),
+    					listen_dev(button5, "click", /*autoPlay*/ ctx[7], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*tiles*/ 8) {
-    				each_value_9 = /*tiles*/ ctx[3];
-    				validate_each_argument(each_value_9);
+    			if (dirty[0] & /*seats*/ 1) {
+    				each_value_5 = /*seats*/ ctx[0][0];
+    				validate_each_argument(each_value_5);
     				let i;
 
-    				for (i = 0; i < each_value_9.length; i += 1) {
-    					const child_ctx = get_each_context_9(ctx, each_value_9, i);
-
-    					if (each_blocks_5[i]) {
-    						each_blocks_5[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks_5[i] = create_each_block_9(child_ctx);
-    						each_blocks_5[i].c();
-    						each_blocks_5[i].m(table0, null);
-    					}
-    				}
-
-    				for (; i < each_blocks_5.length; i += 1) {
-    					each_blocks_5[i].d(1);
-    				}
-
-    				each_blocks_5.length = each_value_9.length;
-    			}
-
-    			if (dirty[0] & /*discardSeats, showSeats, seats*/ 7) {
-    				each_value_4 = /*seats*/ ctx[0];
-    				validate_each_argument(each_value_4);
-    				let i;
-
-    				for (i = 0; i < each_value_4.length; i += 1) {
-    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+    				for (i = 0; i < each_value_5.length; i += 1) {
+    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
 
     					if (each_blocks_4[i]) {
     						each_blocks_4[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks_4[i] = create_each_block_4(child_ctx);
+    						each_blocks_4[i] = create_each_block_5(child_ctx);
     						each_blocks_4[i].c();
-    						each_blocks_4[i].m(table1, null);
+    						each_blocks_4[i].m(div2, t14);
     					}
     				}
 
@@ -9779,7 +9470,103 @@ var app = (function () {
     					each_blocks_4[i].d(1);
     				}
 
-    				each_blocks_4.length = each_value_4.length;
+    				each_blocks_4.length = each_value_5.length;
+    			}
+
+    			if (dirty[0] & /*seats*/ 1) {
+    				each_value_4 = /*seats*/ ctx[0][1];
+    				validate_each_argument(each_value_4);
+    				let i;
+
+    				for (i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks_3[i]) {
+    						each_blocks_3[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_3[i] = create_each_block_4(child_ctx);
+    						each_blocks_3[i].c();
+    						each_blocks_3[i].m(div5, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_3.length; i += 1) {
+    					each_blocks_3[i].d(1);
+    				}
+
+    				each_blocks_3.length = each_value_4.length;
+    			}
+
+    			if (dirty[0] & /*tiles*/ 2) {
+    				each_value_2 = /*tiles*/ ctx[1];
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_2[i] = create_each_block_2(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(table, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+
+    				each_blocks_2.length = each_value_2.length;
+    			}
+
+    			if (dirty[0] & /*seats*/ 1) {
+    				each_value_1 = /*seats*/ ctx[0][3];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(div7, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty[0] & /*seats*/ 1) {
+    				each_value = /*seats*/ ctx[0][2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div10, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
     			}
     		},
     		i: noop,
@@ -9797,13 +9584,8 @@ var app = (function () {
     			if (detaching) detach_dev(t9);
     			if (detaching) detach_dev(button5);
     			if (detaching) detach_dev(t11);
-    			if (detaching) detach_dev(div0);
-    			destroy_each(each_blocks_5, detaching);
-    			if (detaching) detach_dev(t12);
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div13);
     			destroy_each(each_blocks_4, detaching);
-    			if (detaching) detach_dev(t13);
-    			if (detaching) detach_dev(table2);
     			destroy_each(each_blocks_3, detaching);
     			destroy_each(each_blocks_2, detaching);
     			destroy_each(each_blocks_1, detaching);
@@ -9830,19 +9612,19 @@ var app = (function () {
     		id,
     		tp: "bing",
     		num: id + 1,
-    		icon: `${id + 1}-bing`
+    		icon: `${id + 1}b`
     	}; else //条
     	if (id >= 9 && id < 18) return {
     		id,
     		tp: "tiao",
     		num: id - 9 + 1,
-    		icon: `${id - 9 + 1}-tiao`
+    		icon: `${id - 9 + 1}t`
     	}; else //万	
     	if (id >= 18 && id < 27) return {
     		id,
     		tp: "wan",
     		num: id - 18 + 1,
-    		icon: `${id - 18 + 1}-wan`
+    		icon: `${id - 18 + 1}w`
     	}; else //这里改动加上中发白
     	if (id == 27) return { id, tp: "zhong", icon: "zhong" }; else if (id == 28) return { id, tp: "fa", icon: "fa" }; else if (id == 29) return { id, tp: "bai", icon: "bai" }; else if (id == 30) return { id, tp: "east", icon: "east" }; else if (id == 31) return { id, tp: "west", icon: "west" }; else if (id == 32) return { id, tp: "south", icon: "south" }; else if (id == 33) return { id, tp: "north", icon: "north" };
     }
@@ -9941,11 +9723,11 @@ var app = (function () {
 
     		console.log(actions);
 
-    		$$invalidate(10, mjs = gameInfo.base_info.mahjongs.map((id, idx) => {
+    		$$invalidate(12, mjs = gameInfo.base_info.mahjongs.map((id, idx) => {
     			return tile(id);
     		}));
 
-    		for (let i = 0; i <= 13 * 4; i++) $$invalidate(10, mjs[i].used = true, mjs);
+    		for (let i = 0; i <= 13 * 4; i++) $$invalidate(12, mjs[i].used = true, mjs);
     		console.log(mjs);
     		$$invalidate(0, seats = gameInfo.base_info.game_seats);
 
@@ -9977,7 +9759,7 @@ var app = (function () {
 
     	let gameInfo = null;
     	let mjs = [];
-    	let seats = [];
+    	let seats = [[], [], [], []];
     	let actions = [];
     	let name = "xxxx";
     	let lastAction;
@@ -10002,7 +9784,7 @@ var app = (function () {
 
     			$$invalidate(0, seats);
     			discardSeats[action.seat].push(action.tile);
-    			$$invalidate(1, discardSeats);
+    			discardSeats = discardSeats;
     		} else if (action.tp == "MOPAI") {
     			let i;
 
@@ -10014,7 +9796,7 @@ var app = (function () {
 
     			//should be same
     			//mjs[i].id == action.tile.id
-    			$$invalidate(10, mjs[i].used = true, mjs);
+    			$$invalidate(12, mjs[i].used = true, mjs);
 
     			seats[action.seat].push(action.tile);
     			$$invalidate(0, seats);
@@ -10027,8 +9809,8 @@ var app = (function () {
     			i = seat.findIndex(e => e.id == lastCard.id);
     			let card2 = seat.splice(i, 1);
     			showSeats[action.seat].push([lastCard, card1[0], card2[0]]);
-    			$$invalidate(2, showSeats);
-    			$$invalidate(1, discardSeats);
+    			showSeats = showSeats;
+    			discardSeats = discardSeats;
     			$$invalidate(0, seats);
     		} else if (action.tp == "GANG") {
     			console.log("gang");
@@ -10048,22 +9830,22 @@ var app = (function () {
     			}
 
     			//after gang, it it his turn to mo pai again, a regualr mo pai from begining, not the end.
-    			$$invalidate(2, showSeats);
+    			showSeats = showSeats;
 
-    			$$invalidate(1, discardSeats);
+    			discardSeats = discardSeats;
     			$$invalidate(0, seats);
     		} else if (action.tp == "HU") {
     			console.log("hu");
     			let lastCard = discardSeats[lastAction.seat].pop();
     			let seat = seats[action.seat];
     			seat.push(lastCard);
-    			$$invalidate(2, showSeats);
-    			$$invalidate(1, discardSeats);
+    			showSeats = showSeats;
+    			discardSeats = discardSeats;
     			$$invalidate(0, seats);
     		} else if (action.tp == "ZIMO") {
     			console.log("zimo");
-    			$$invalidate(2, showSeats);
-    			$$invalidate(1, discardSeats);
+    			showSeats = showSeats;
+    			discardSeats = discardSeats;
     			$$invalidate(0, seats);
     		} else {
     			console.log(`unknow action tp: ${action.tp}`);
@@ -10084,6 +9866,10 @@ var app = (function () {
 
     	let discardSeats = [[], [], [], []];
     	let showSeats = [[], [], [], []];
+    	let th = "h-4/5"; //total height
+    	let tw = "w-4/5"; //total width
+    	let h = "h-1/5"; //height of t and b player area
+    	let w = "w-1/5"; //width of l and r player area
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -10112,6 +9898,10 @@ var app = (function () {
     		autoPlay,
     		discardSeats,
     		showSeats,
+    		th,
+    		tw,
+    		h,
+    		w,
     		tiles
     	});
 
@@ -10119,14 +9909,18 @@ var app = (function () {
     		if ("sio" in $$props) sio = $$props.sio;
     		if ("tps" in $$props) tps = $$props.tps;
     		if ("gameInfo" in $$props) gameInfo = $$props.gameInfo;
-    		if ("mjs" in $$props) $$invalidate(10, mjs = $$props.mjs);
+    		if ("mjs" in $$props) $$invalidate(12, mjs = $$props.mjs);
     		if ("seats" in $$props) $$invalidate(0, seats = $$props.seats);
     		if ("actions" in $$props) actions = $$props.actions;
     		if ("name" in $$props) name = $$props.name;
     		if ("lastAction" in $$props) lastAction = $$props.lastAction;
-    		if ("discardSeats" in $$props) $$invalidate(1, discardSeats = $$props.discardSeats);
-    		if ("showSeats" in $$props) $$invalidate(2, showSeats = $$props.showSeats);
-    		if ("tiles" in $$props) $$invalidate(3, tiles = $$props.tiles);
+    		if ("discardSeats" in $$props) discardSeats = $$props.discardSeats;
+    		if ("showSeats" in $$props) showSeats = $$props.showSeats;
+    		if ("th" in $$props) $$invalidate(8, th = $$props.th);
+    		if ("tw" in $$props) $$invalidate(9, tw = $$props.tw);
+    		if ("h" in $$props) $$invalidate(10, h = $$props.h);
+    		if ("w" in $$props) $$invalidate(11, w = $$props.w);
+    		if ("tiles" in $$props) $$invalidate(1, tiles = $$props.tiles);
     	};
 
     	let tiles;
@@ -10136,8 +9930,8 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*mjs*/ 1024) {
-    			 $$invalidate(3, tiles = mjs.reduce(
+    		if ($$self.$$.dirty[0] & /*mjs*/ 4096) {
+    			 $$invalidate(1, tiles = mjs.reduce(
     				(last, cur) => {
     					let l = last[last.length - 1];
 
@@ -10156,8 +9950,6 @@ var app = (function () {
 
     	return [
     		seats,
-    		discardSeats,
-    		showSeats,
     		tiles,
     		getServerInfo,
     		send,
@@ -10165,6 +9957,10 @@ var app = (function () {
     		getGameInfo,
     		next,
     		autoPlay,
+    		th,
+    		tw,
+    		h,
+    		w,
     		mjs
     	];
     }

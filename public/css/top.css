@@ -1,0 +1,148 @@
+.tile-t{
+    background-image: url(top.png);
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+    width: 55px;
+    height: 84px;
+    max-width: 100%;
+}	
+
+.tile-t-1t {
+    background-position: -0px -84px
+}
+
+.tile-t-2t {
+    background-position: -0px -168px
+}
+
+.tile-t-3t {
+    background-position: -0px -252px
+}
+
+.tile-t-4t {
+    background-position: -0px -336px
+}
+
+.tile-t-5t {
+    background-position: -0px -420px
+}
+
+.tile-t-6t {
+    background-position: -55px -0px
+}
+
+.tile-t-7t {
+    background-position: -55px -84px
+}
+
+.tile-t-8t {
+    background-position: -55px -168px
+}
+
+.tile-t-9t {
+    background-position: -55px -252px
+}
+
+.tile-t-1b {
+    background-position: -165px -84px
+}
+
+.tile-t-2b {
+    background-position: -165px -168px
+}
+
+.tile-t-3b {
+    background-position: -165px -252px
+}
+
+.tile-t-4b {
+    background-position: -165px -336px
+}
+
+.tile-t-5b {
+    background-position: -165px -420px
+}
+
+.tile-t-6b {
+    background-position: -220px -0px
+}
+
+.tile-t-7b {
+    background-position: -220px -84px
+}
+
+.tile-t-8b {
+    background-position: -220px -168px
+}
+
+.tile-t-9b {
+    background-position: -220px -252px
+}
+
+
+
+
+
+
+
+
+.tile-t-1w {
+    background-position: -55px -336px
+}
+
+.tile-t-2w {
+    background-position: -55px -420px
+}
+
+.tile-t-3w {
+    background-position: -110px -0px
+}
+
+.tile-t-4w {
+    background-position: -110px -84px
+}
+
+.tile-t-5w {
+    background-position: -110px -168px
+}
+
+.tile-t-6w {
+    background-position: -110px -252px
+}
+
+.tile-t-7w {
+    background-position: -110px -336px
+}
+
+.tile-t-8w {
+    background-position: -110px -420px
+}
+
+.tile-t-9w {
+    background-position: -165px -0px
+}
+
+.tile-t-east {
+    background-position: -275 -168;
+}
+.tile-t-west {
+    background-position: -275 -420;
+}
+.tile-t-south {
+    background-position: -275 -336;
+}
+.tile-t-north {
+    background-position: -275 -252;
+}
+.tile-t-zhong {
+    background-position: -275 -0;
+}
+.tile-t-fa {
+    background-position: -220 -336;
+}
+.tile-t-bai {
+    background-position: -275 -84;
+}
+.tile-t-back {
+    background-position: -330 -84;
+}

@@ -59,21 +59,21 @@
 			id: id,
 			tp: "bing",
 			num: id+1,
-			icon: `${id+1}-bing`
+			icon: `${id+1}b`
 		};
 		//条
 		else if(id >= 9 && id < 18) return {
 			id: id,
 			tp: "tiao",
 			num: id - 9 + 1,
-			icon: `${id - 9 + 1}-tiao`
+			icon: `${id - 9 + 1}t`
 		}
 		//万	
 		else if(id >= 18 && id < 27) return {
 			id: id,
 			tp: "wan",
 			num: id - 18 + 1,
-			icon: `${id - 18 + 1}-wan`
+			icon: `${id - 18 + 1}w`
 		}
 		//这里改动加上中发白
 		else if(id == 27) return {
@@ -179,7 +179,7 @@
 	}
 	let gameInfo = null;
 	let mjs = [];
-	let seats = [];
+	let seats = [[],[],[],[]];
 	let actions = [];
 
 	let name = "xxxx";
@@ -290,6 +290,12 @@
 	let discardSeats = [[],[],[],[]];
 	let showSeats = [[],[],[],[]];
 
+	let th = "h-4/5";	//total height
+	let tw = "w-4/5";	//total width
+
+	let h = "h-1/5";	//height of t and b player area
+	let w = "w-1/5";	//width of l and r player area
+
 </script>
 <button on:click={setup}>Setup2</button>
 <button on:click={send}>Send</button>
@@ -297,6 +303,80 @@
 <button on:click={getGameInfo}>Get Game Info</button>
 <button on:click={next}>Next</button>
 <button on:click={autoPlay}>AutoPlay</button>
+
+	<div class="flex flex-col {th} {tw} border-solid border-blue-400 border-2">
+		<div id="t" class="flex flex-row {h} border-solid border-blue-400 border-2">
+
+			<div id="tl" class="flex {w} border-solid border-blue-400 border-2">
+				tl
+			</div>
+	
+			<div id="tm" class="flex flex-grow border-solid border-blue-400 border-2">
+				{#each seats[0] as m}
+					<div class="">
+						<div class="tile-t tile-t-{m.icon}"></div>
+					</div>
+				{/each}			
+				<div class="tile-t tile-t-back"></div>
+			</div>
+			
+			<div id="tr" class="flex {w} border-solid border-blue-400 border-2">
+				tr
+			</div>
+		</div>
+
+		<div id="m" class="flex flex-grow border-solid border-blue-400 border-2">
+			<div id="ml" class="flex flex-col {w} border-solid border-blue-400 border-2">
+				{#each seats[1] as m}
+					<div class="">
+						<div class="tile-l tile-l-{m.icon}"></div>
+					</div>
+				{/each}			
+			</div>
+	
+			<div id="mm" class="flex flex-grow border-solid border-blue-400 border-2">
+				<table style="background-color: indigo;">
+					{#each tiles as mj}
+						<tr>
+							{#each mj as m}
+								<td class="tile-t tile-t-{m.icon}" style={m.used ? "opacity:0.15" : "opacity:1"}></td>
+							{/each}			
+						</tr>
+					{/each}
+				</table>
+			</div>
+			
+			<div id="mr" class="flex flex-col {w} border-solid border-blue-400 border-2">
+				{#each seats[3] as m}
+					<div class="">
+						<div class="tile-r tile-r-{m.icon}"></div>
+					</div>
+				{/each}			
+			</div>
+		</div>
+		
+		<div id="b" class="flex {h} border-solid border-blue-400 border-2">
+			<div id="bl" class="flex {w} border-solid border-blue-400 border-2">
+				bl
+			</div>
+	
+			<div id="bm" class="flex flex-grow border-solid border-blue-400 border-2">
+				{#each seats[2] as m}
+					<div class="">
+						<div class="tile-b tile-b-{m.icon}"></div>
+					</div>
+				{/each}			
+			</div>
+			
+			<div id="br" class="flex {w} border-solid border-blue-400 border-2">
+				br
+			</div>
+		</div>
+	</div>
+
+
+<!--
+
 <div>
 	<table style="background-color: indigo;">
 	{#each tiles as mj}
@@ -334,122 +414,35 @@
 	</table>
 </div>
 
-<table>
-	<tr>
-		{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
-			<td class="sprite sprite-{n}-tiao"></td>
-		{/each}
-	</tr>
-	<tr>
-		{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
-			<td class="sprite sprite-{n}-bing"></td>
-		{/each}
-	</tr>
-	<tr>
-		{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
-			<td class="sprite sprite-{n}-wan"></td>
-		{/each}
-	</tr>
-	<tr>
-		{#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}
-			<td class="sprite sprite-{n}"></td>
-		{/each}
-	</tr>	
-</table>
+<hr/>
+<hr/>
 
+<div class="flex flex-row p-10">
+	{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+		<div class="p-10 bottom-sprite bottom-sprite-{n}-tiao"></div>
+	{/each}
+</div>	
+	<tr>
+		{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+			<td class="bottom-sprite bottom-sprite-{n}-bing"></td>
+		{/each}
+	</tr>
+	<tr>
+		{#each [1, 2, 3, 4, 5, 6, 7, 8, 9] as n}
+			<td class="bottom-sprite bottom-sprite-{n}-wan"></td>
+		{/each}
+	</tr>
 
+<div class="flex flex-row">
+	{#each ['east', 'west', 'south', 'north', 'zhong', 'fa', 'bai'] as n}
+		<div class="bottom-sprite bottom-sprite-{n}"></div>
+	{/each}
+</div>
+
+-->	
 
 <style type="text/scss">
 	* {
 		box-sizing: border-box;
 	}
-
-	$z: 1;
-	$width:55px;
-	$height:84px;
-	$w: $width/$z;
-	$h: $height/$z;
-	.sprite {
-		background-image: url(../css/tiles.png);
-		background-size: (512/$z)+0px (512/$z)+0px;
-		background-repeat: no-repeat;
-		width: $w;
-		height: $h;
-		max-width: 100%;
-	}	
-
-	$tiaos:
-		"1" -0*$w -1*$h,
-		"2" -0*$w -2*$h,
-		"3" -0*$w -3*$h,
-		"4" -0*$w -4*$h,
-		"5" -0*$w -5*$h,
-		"6" -1*$w -0*$h,
-		"7" -1*$w -1*$h,
-		"8" -1*$w -2*$h,
-		"9" -1*$w -3*$h;
-
-	@each $n, $x, $y in $tiaos {
-    	.sprite-#{$n}-tiao {
-        	background-position: #{$x} #{$y}
-    	}
-	}
-
-	$bings:
-		"1" -3*$w -1*$h,
-		"2" -3*$w -2*$h,
-		"3" -3*$w -3*$h,
-		"4" -3*$w -4*$h,
-		"5" -3*$w -5*$h,
-		"6" -4*$w -0*$h,
-		"7" -4*$w -1*$h,
-		"8" -4*$w -2*$h,
-		"9" -4*$w -3*$h;
-
-	@each $n, $x, $y in $bings {
-    	.sprite-#{$n}-bing {
-        	background-position: #{$x} #{$y}
-    	}
-	}
-
-	$wans:
-		"1" -1*$w -4*$h,
-		"2" -1*$w -5*$h,
-		"3" -2*$w -0*$h,
-		"4" -2*$w -1*$h,
-		"5" -2*$w -2*$h,
-		"6" -2*$w -3*$h,
-		"7" -2*$w -4*$h,
-		"8" -2*$w -5*$h,
-		"9" -3*$w -0*$h;
-
-	@each $n, $x, $y in $wans {
-    	.sprite-#{$n}-wan {
-        	background-position: #{$x} #{$y}
-    	}
-	}
-
-	.sprite-east {
-       	background-position: -5*$w -2*$h
-    }
-	.sprite-west {
-       	background-position: -5*$w -5*$h
-    }
-	.sprite-south {
-       	background-position: -5*$w -4*$h
-    }
-	.sprite-north {
-       	background-position: -5*$w -3*$h
-    }
-	.sprite-zhong {
-       	background-position: -5*$w -0*$h
-    }
-	.sprite-fa {
-       	background-position: -4*$w -4*$h;
-    }
-	.sprite-bai {
-       	background-position: -5*$w -1*$h;
-		//transform: rotateZ(90deg);
-    }
-
 </style>
