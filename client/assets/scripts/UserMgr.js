@@ -19,7 +19,8 @@ cc.Class({
         oldRoomId:null,
     },
     
-    guestAuth:function(){
+    guestAuth:function(account){
+        /*
         var account = cc.args["account"];
         if(account == null){
             //remove this line will force browser alway start with a new account, for debug
@@ -30,7 +31,12 @@ cc.Class({
             account = Date.now();
             cc.sys.localStorage.setItem("account",account);
         }
-        
+        */
+        if(account == null){
+            account = Date.now();
+            cc.sys.localStorage.setItem("account",account);
+        }
+
         cc.vv.http.sendRequest("/guest",{account:account},this.onAuth);
     },
     
@@ -61,6 +67,8 @@ cc.Class({
                 }
                 else{
                     console.log(ret);
+                    cc.sys.localStorage.setItem("name", ret.name);
+
                     self.account = ret.account;
         			self.userId = ret.userid;
         			self.userName = ret.name;

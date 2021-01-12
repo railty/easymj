@@ -40,8 +40,9 @@ cc.Class({
         // ...
         _mima:null,
         _mimaIndex:0,
+        labelUser: cc.Label,
     },
-
+    account: null,
     // use this for initialization
     onLoad: function () {
         if(!cc.sys.isNative && cc.sys.isMobile){
@@ -70,6 +71,21 @@ cc.Class({
         }
 
         cc.find("Canvas/btn_yk").active = true;
+
+        account = cc.args["account"];
+        if(account == null) account = cc.sys.localStorage.getItem("account");
+        
+        if(account == null){
+            cc.find("Canvas/btn_user").active = false;
+        } 
+        else {
+            let name = cc.sys.localStorage.getItem("name");
+            if (name) {
+                this.labelUser.string = cc.sys.localStorage.getItem("name");
+                cc.find("Canvas/btn_user").active = true;
+            }
+            else cc.find("Canvas/btn_user").active = false;
+        }
     },
     
     start:function(){
@@ -85,10 +101,13 @@ cc.Class({
         }   
     },
     
-    onBtnQuickStartClicked:function(){
-        cc.vv.userMgr.guestAuth();
+    onBtnQuickStartClicked_existing:function(){
+        cc.vv.userMgr.guestAuth(account);
     },
-    
+    onBtnQuickStartClicked_new:function(){
+        cc.vv.userMgr.guestAuth(null);
+    },
+
     onBtnWeichatClicked:function(){
         var self = this;
             cc.vv.anysdkMgr.login();

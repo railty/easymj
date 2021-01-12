@@ -1,6 +1,7 @@
 var config = {
+    //https: false,
+    //actUrl: "http://act.game.com:9000",
     https: true,
-    //actURL: "https://act.nings.ca:9000"
     actUrl: "https://act.easymj.games:9000",
     load: function () {
     },

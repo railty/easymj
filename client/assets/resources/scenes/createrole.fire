@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        527.4094709047232,
+        446.86910835277035,
         0,
         0,
         0,
@@ -1259,7 +1259,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 8,
+    "maxLength": 32,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],

@@ -42,18 +42,18 @@ var HTTP = cc.Class({
                         }                        /* code */
                     } catch (e) {
                         console.log("err:" + e);
-                        //handler(null);
+                        handler(null);
                     } 
                     finally{
                         if(cc.vv && cc.vv.wc){
-                        //       cc.vv.wc.hide();    
+                            cc.vv.wc.hide();    
                         }
                     }
                 }
             };
             
             if(cc.vv && cc.vv.wc){
-                //cc.vv.wc.show();
+                cc.vv.wc.show();
             }
             //发送请求
             xhr.send();
