@@ -1,6 +1,6 @@
 var config = {
-    https: true,
-    actUrl: "https://act.easymj.games:9000",
+    https: false,
+    actUrl: "http://act.game.com:9000",
     load: function () {
     },
     texts: {

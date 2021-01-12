@@ -29,20 +29,12 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //    default: null,
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
         _mima:null,
         _mimaIndex:0,
         labelUser: cc.Label,
     },
     account: null,
+    name: null,
     // use this for initialization
     onLoad: function () {
         if(!cc.sys.isNative && cc.sys.isMobile){
@@ -72,16 +64,16 @@ cc.Class({
 
         cc.find("Canvas/btn_yk").active = true;
 
-        account = cc.args["account"];
-        if(account == null) account = cc.sys.localStorage.getItem("account");
+        this.account = cc.args["account"];
+        if(this.account == null) this.account = cc.sys.localStorage.getItem("account");
         
-        if(account == null){
+        if(this.account == null){
             cc.find("Canvas/btn_user").active = false;
         } 
         else {
-            let name = cc.sys.localStorage.getItem("name");
-            if (name) {
-                this.labelUser.string = cc.sys.localStorage.getItem("name");
+            this.name = cc.sys.localStorage.getItem("name");
+            if (this.name) {
+                this.labelUser.string = this.name;
                 cc.find("Canvas/btn_user").active = true;
             }
             else cc.find("Canvas/btn_user").active = false;
@@ -89,20 +81,22 @@ cc.Class({
     },
     
     start:function(){
-        var account =  cc.sys.localStorage.getItem("wx_account");
+        /*
+        this.account =  cc.sys.localStorage.getItem("wx_account");
         var sign = cc.sys.localStorage.getItem("wx_sign");
-        if(account != null && sign != null){
+        if(this.account != null && sign != null){
             var ret = {
                 errcode:0,
-                account:account,
+                account:this.account,
                 sign:sign
             }
             cc.vv.userMgr.onAuth(ret);
-        }   
+        } 
+        */  
     },
     
     onBtnQuickStartClicked_existing:function(){
-        cc.vv.userMgr.guestAuth(account);
+        cc.vv.userMgr.guestAuth(this.account);
     },
     onBtnQuickStartClicked_new:function(){
         cc.vv.userMgr.guestAuth(null);

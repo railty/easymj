@@ -1843,12 +1843,14 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        /*
         if(!cc.sys.isNative && cc.sys.isMobile){
             var cvs = this.node.getComponent(cc.Canvas);
-            cvs.fitHeight = true;
-            cvs.fitWidth = true;
+            //cvs.fitHeight = true;
+            //cvs.fitWidth = true;
         }
         this.onRandomBtnClicked();
+        */
     },
 
     onBtnConfirmClicked:function(){
