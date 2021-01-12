@@ -1845,8 +1845,8 @@ cc.Class({
     onLoad: function () {
         if(!cc.sys.isNative && cc.sys.isMobile){
             var cvs = this.node.getComponent(cc.Canvas);
-            //cvs.fitHeight = true;
-            //cvs.fitWidth = true;
+            cvs.fitHeight = true;
+            cvs.fitWidth = true;
         }
         this.onRandomBtnClicked();
     },

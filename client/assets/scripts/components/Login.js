@@ -65,13 +65,16 @@ cc.Class({
         cc.find("Canvas/btn_yk").active = true;
 
         this.account = cc.args["account"];
-        if(this.account == null) this.account = cc.sys.localStorage.getItem("account");
+        if(! this.account) this.account = cc.sys.localStorage.getItem("account");
         
-        if(this.account == null){
+        if(! this.account){
             cc.find("Canvas/btn_user").active = false;
         } 
         else {
             this.name = cc.sys.localStorage.getItem("name");
+            //apprently, you cannot do this.name=null, or this.name=""
+            if (this.name == "Canvas<Login>") this.name = " ";
+
             if (this.name) {
                 this.labelUser.string = this.name;
                 cc.find("Canvas/btn_user").active = true;
