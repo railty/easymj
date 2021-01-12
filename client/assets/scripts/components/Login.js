@@ -104,7 +104,7 @@ cc.Class({
 
     onBtnWeichatClicked:function(){
         var self = this;
-            cc.vv.anysdkMgr.login();
+        cc.vv.anysdkMgr.login();
     },
     
     onBtnMIMAClicked:function(event){
